@@ -27,7 +27,7 @@ const InstituteProspectus = require("./models/instituteProspectusLink");
 const LatestEvent = require("./models/latestEvent");
 const NewPage = require("./models/newpage");
 const Notice = require("./models/notice");
-const Patent = require("./models/patent");
+const Patent = require("./models/Patent");
 const PhotoGallery = require("./models/photoGallery");
 const PlacementStat = require("./models/placementStat");
 const ProctorialCell = require("./models/proctorialCell");
@@ -41,7 +41,6 @@ const Testimonial = require("./models/testimonial");
 const Timeline = require("./models/timeline");
 const upcommingEvent = require("./models/upcomingEvent");
 const yearlyRanking = require("./models/yearlyRanking");
-const newpage = require("./models/newpage");
 
 AdminBro.registerAdapter(AdminBroMongoose);
 const AdminBroOptions = {
