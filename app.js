@@ -35,14 +35,13 @@ const bodyParser = require("body-parser");
 const hostelRouter = require("./routes/hostel");
 const proctorialCellRouter = require("./routes/proctorialCell");
 
-
 //initialize app
 const app = express();
 
-app.use(express.json({limit:'5mb'}));
+app.use(express.json({ limit: "5mb" }));
 bodyParser.urlencoded({ extended: true });
-app.use(express.urlencoded({extended: true}));
-app.use(bodyParser.json({limit:'5mb'}));
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "5mb" }));
 app.use(compression());
 app.use(cookieParser());
 
@@ -50,17 +49,16 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-const corsOptions ={
-  origin:['http://localhost:3000','https://nitjmain.onrender.com/'], 
-}
-app.use(cors(corsOptions));
+//allowing all cross origin requests
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-      
 //routes
 
 // app.use("/login",login);
-
-
 
 // app.route('/*').post(verifyUser).put(verifyUser).delete(verifyUser);
 app.use("/navbar", navBarRouter);
