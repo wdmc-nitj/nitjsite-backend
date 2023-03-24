@@ -47,7 +47,7 @@ app.use(bodyParser.json({limit:'5mb'}));
 app.use(compression());
 app.use(cookieParser());
 const corsOptions ={
-  origin:'http://localhost:3000', 
+  origin:['http://localhost:3000','https://nitjmain.onrender.com/'], 
   credentials:true,            //access-control-allow-credentials:true
 }
 app.use(cors(corsOptions));
