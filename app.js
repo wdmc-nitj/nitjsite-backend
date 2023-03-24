@@ -36,7 +36,6 @@ const hostelRouter = require("./routes/hostel");
 const proctorialCellRouter = require("./routes/proctorialCell");
 
 
-
 //initialize app
 const app = express();
 
@@ -46,29 +45,15 @@ app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json({limit:'5mb'}));
 app.use(compression());
 app.use(cookieParser());
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 const corsOptions ={
   origin:['http://localhost:3000','https://nitjmain.onrender.com/'], 
-  credentials:true,            //access-control-allow-credentials:true
 }
 app.use(cors(corsOptions));
-
-
-app.use((req, res, next) => {
-  // res.header("Access-Control-Allow-Origin", "");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  //     if (req.method === "OPTIONS") {
-  //         res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  //         return res.status(200).json({});
-  //     }
-  //     if (req.headers.authorization !== process.env.AUTH_TOKEN) {
-  //         return res.status(401).json({ message: "Unauthorized" });
-  //     }
-
-  next();
-});
 
       
 //routes
