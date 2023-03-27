@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const InstituteProspectusLinkSchema = new mongoose.Schema(
   {
-    InstituteProspectusLink: { type: Object, required: true },
+    link: { type: String },
+    program: { type: String },
+    degree: { type: String },
     show: { type: Boolean, default: true },
     order: {
       type: Number,

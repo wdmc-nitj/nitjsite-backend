@@ -3,20 +3,7 @@ const InstituteProspectusLink = require("../models/instituteProspectusLink");
 
 //----------------------------------------------------------------------->
 exports.addInstituteProspectusLink = async (req, res) => {
-  if (req.body?.InstituteProspectusLink === undefined) {
-    return res.status(400).send("Error: InstituteProspectusLink is required");
-  }
-
-  const data = new InstituteProspectusLink({
-    InstituteProspectusLink: req.body?.InstituteProspectusLink,
-    sourceOfInfo: {
-      name: req.body?.sourceOfInfo?.name,
-      email: req.body?.sourceOfInfo?.email,
-      designation: req.body?.sourceOfInfo?.designation,
-      department: req.body?.sourceOfInfo?.department,
-    },
-    order: req.body?.order,
-  });
+  const data = new InstituteProspectusLink(req.body);
 
   data
     .save()
