@@ -3,28 +3,39 @@ const mongoose = require("mongoose");
 
 //Schema---------------------------->
 const PublicationSchema = new mongoose.Schema(
-    {
-        Publication: { type: Object },
-        show: { type: Boolean, default: true },
-        order:{
-          type: Number,
-      },
-      new:{
-        type: Boolean,
+  {
+    authors: { type: String },
+    desc: { type: String },
+    url: { type: String },
+    show: { type: Boolean, default: true },
+    order: {
+      type: Number,
     },
-        sourceOfInfo: {
-            type: Object,
-            default: {
-              name: null,
-              email: null,
-              designation: null,
-              department: null,
-            }
-          },
+    new: {
+      type: Boolean,
     },
-    {
-        timestamps: true,
-    }
+    newPage: {
+      type: Boolean,
+    },
+    pdfLink: {
+      type: String,
+    },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
 //Model---------------------------->

@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const ResearchSchema = new Schema(
   {
-    title: { type: String, required: true },
-    desc: { type: String, default: "" },
-    image: { type: String, default: "" },
+    title: { type: String },
+    desc: { type: String },
+    image: { type: String },
     order: {
       type: Number,
       default: 0,
@@ -15,14 +15,23 @@ const ResearchSchema = new Schema(
       type: Boolean,
       default: true,
     },
-    sourceOfInfo: {
-      type: Object,
-      default: {
-        name: null,
-        email: null,
-        designation: null,
-        department: null,
-      },
+    newPage: {
+      type: Boolean,
+    },
+    pdfLink: {
+      type: String,
+    },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
     },
     type: { type: String, required: true },
     show: { type: Boolean, default: true },

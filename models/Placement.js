@@ -1,35 +1,43 @@
-const mongoose=require('mongoose')
+const mongoose = require("mongoose");
 
-const Schema=new mongoose.Schema({
-    department:{
-        type:String
+const Schema = new mongoose.Schema(
+  {
+    department: {
+      type: String,
     },
-    name:{
-        type:String
+    name: {
+      type: String,
     },
-    img:{
-        type:String
+    img: {
+      type: String,
     },
-    company:{
-        type:String
+    company: {
+      type: String,
     },
-    package:{
-        type:Number
+    package: {
+      type: Number,
     },
-    sourceOfInfo: {
-        type: Object,
-        default: {
-          name: null,
-          email: null,
-          designation: null,
-          department: null,
-        }
-      },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
+    },
+    newPage: {
+      type: Boolean,
+    },
     show: { type: Boolean, default: true },
-    order:{
-        type: Number,
-    }
-},{timestamps:true}
-)
+    order: {
+      type: Number,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports= mongoose.model("Placement",Schema);
+module.exports = mongoose.model("Placement", Schema);

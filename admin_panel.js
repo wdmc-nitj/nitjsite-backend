@@ -6,6 +6,7 @@ const Faculty = require("./models/Faculty");
 const Acadcord = require("./models/Acadcord");
 const Activity = require("./models/Activity");
 const HOD = require("./models/HodMessage");
+const Hostel = require("./models/hostel");
 const Infrastructure = require("./models/Infrastructure");
 const PhdScholar = require("./models/PhdScholar");
 const Placement = require("./models/Placement");
@@ -50,6 +51,7 @@ const AdminBroOptions = {
     Acadcord,
     Activity,
     HOD,
+    Hostel,
     Infrastructure,
     PhdScholar,
     Placement,
@@ -87,7 +89,7 @@ const AdminBroOptions = {
     Testimonial,
     Timeline,
     upcommingEvent,
-    yearlyRanking
+    yearlyRanking,
   ],
 };
 const admin_panel = new AdminBro(AdminBroOptions);

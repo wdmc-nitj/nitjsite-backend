@@ -16,14 +16,23 @@ const Schema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    sourceOfInfo: {
-      type: Object,
-      default: {
-        name: null,
-        email: null,
-        designation: null,
-        department: null,
-      },
+    newPage: {
+      type: Boolean,
+    },
+    pdfLink: {
+      type: String,
+    },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
     },
     show: { type: Boolean, default: true },
   },

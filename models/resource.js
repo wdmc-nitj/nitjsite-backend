@@ -30,6 +30,18 @@ const Schema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -3,69 +3,78 @@ const mongoose = require("mongoose");
 
 //Schema---------------------------->
 const Schema = new mongoose.Schema(
-    {
-        messageText: {
-            type: String,
-            default: "",
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        designation: {
-            type: String,
-            required: true,
-        },
-        department: {
-            type: String,
-            default: "",
-        },
-        profileLink: {
-            type: String,
-            default: "",
-        },
-        qualification: {
-            type: Object,
-            default: {
-                degree: "",
-                university: "",
-                year: "",
-            },
-        },
-        image: {
-            type: String,
-            default: "",
-        },
-
-        sourceOfInfo: {
-            type: Object,
-            default: {
-                name: null,
-                email: null,
-                designation: null,
-                department: null,
-            },
-        },
-        contact: {
-            type: Object,
-            default: {
-                email: null,
-                telNo: null,
-                EPABX: null,
-                Extn: null,
-                fax: null,
-            },
-        },
-        show: { type: Boolean, default: true },
-
-        order: {
-            type: Number,
-            default: 0,
-        },
+  {
+    messageText: {
+      type: String,
+      default: "",
     },
-    {
-        timestamps: true,
-    }
+    name: {
+      type: String,
+      required: true,
+    },
+    designation: {
+      type: String,
+      required: true,
+    },
+    department: {
+      type: String,
+      default: "",
+    },
+    profileLink: {
+      type: String,
+      default: "",
+    },
+    qualificationDegree: {
+      type: String,
+    },
+    qualificationUniversity: {
+      type: String,
+    },
+    qualificationYear: {
+      type: String,
+    },
+    image: {
+      type: String,
+      default: "",
+    },
+
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
+    },
+    contactEmail: {
+      type: String,
+    },
+    contactTelNo: {
+      type: String,
+    },
+    contactEPABX: {
+      type: String,
+    },
+    contactExtn: {
+      type: String,
+    },
+    contactFax: {
+      type: String,
+    },
+    show: { type: Boolean, default: true },
+
+    order: {
+      type: Number,
+      default: 0,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
 //Model---------------------------->

@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const Schema = new mongoose.Schema(
   {
-    image: { type: Object, required: true },
+    name: { type: String },
+    link: { type: String },
     order: {
       type: Number,
     },
@@ -16,14 +17,20 @@ const Schema = new mongoose.Schema(
     new: {
       type: Boolean,
     },
-    sourceOfInfo: {
-      type: Object,
-      default: {
-        name: null,
-        email: null,
-        designation: null,
-        department: null,
-      },
+    newPage: {
+      type: String,
+    },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
     },
   },
   {

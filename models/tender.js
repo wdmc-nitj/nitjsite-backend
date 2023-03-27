@@ -3,34 +3,40 @@ const mongoose = require("mongoose");
 
 //Schema---------------------------->
 const TenderSchema = new mongoose.Schema(
-    {
-        lastDateOfReceiptOfBids: { type: String, required: true },
-        dateOfOpeningTechnicalBids: { type: String,required: true },
-        desc: { type: String,default: "" },
-        fileLink: { type: String, default: "" },
-        imageLink: { type: String, default: "" },
-        show: { type: Boolean, default: true },
-        order:{
-          type: Number,
-          default: 0,
-      },
-      new:{
-        type: Boolean,
-        default: true,
+  {
+    lastDateOfReceiptOfBids: { type: String, required: true },
+    dateOfOpeningTechnicalBids: { type: String, required: true },
+    desc: { type: String, default: "" },
+    fileLink: { type: String, default: "" },
+    imageLink: { type: String, default: "" },
+    show: { type: Boolean, default: true },
+    order: {
+      type: Number,
+      default: 0,
     },
-        sourceOfInfo: {
-            type: Object,
-            default: {
-              name: null,
-              email: null,
-              designation: null,
-              department: null,
-            }
-          },
+    new: {
+      type: Boolean,
+      default: true,
     },
-    {
-        timestamps: true,
-    }
+    newPage: {
+      type: Boolean,
+    },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
 //Model---------------------------->
