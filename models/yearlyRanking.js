@@ -4,20 +4,30 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const YearlyRankingSchema = new mongoose.Schema(
   {
-    YearlyRanking: { type: Object, required: true },
+    year: { type: Number },
+    ranking: { type: String },
     show: { type: Boolean, default: true },
+    new: {
+      type: Boolean,
+    },
+    newPage: {
+      type: Boolean,
+    },
     order: {
       type: Number,
       default: 0,
     },
-    sourceOfInfo: {
-      type: Object,
-      default: {
-        name: null,
-        email: null,
-        designation: null,
-        department: null,
-      },
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
     },
   },
   {
