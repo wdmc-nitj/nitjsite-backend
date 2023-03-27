@@ -1,35 +1,43 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 //----------------------------------->
 
 //Schema---------------------------->
-const Schema = new mongoose.Schema({
-    links: {
-        type: Object,
+const Schema = new mongoose.Schema(
+  {
+    link: {
+      type: Object,
     },
-    show:{
-        type: Boolean,
-        default: true
+    show: {
+      type: Boolean,
+      default: true,
     },
-    order:{
-        type: Number,
-        default: 0
+    order: {
+      type: Number,
+      default: 0,
     },
-    sourceOfInfo: {
-        type: Object,
-        default: {
-          name: null,
-          email: null,
-          designation: null,
-          department: null,
-        }
-      },
-}, {
+    sourceOfInfoName: {
+      type: String,
+    },
+    sourceOfInfoEmail: {
+      type: String,
+    },
+    sourceOfInfoDesignation: {
+      type: String,
+    },
+    sourceOfInfoDepartment: {
+      type: String,
+    },
+    newPage: {
+      type: Boolean,
+    },
+  },
+  {
     timestamps: true,
-});
-
+  }
+);
 
 //Model---------------------------->
-const Model = mongoose.model('Footer', Schema);
+const Model = mongoose.model("Footer", Schema);
 
 //Export----------------------------->
 module.exports = Model;
