@@ -29,7 +29,7 @@ const clubRouter = require("./routes/club");
 const upcomingEventRouter = require("./routes/upcomingEvent");
 const departmentRouter = require("./routes/departement");
 const searchRouter = require("./routes/search");
-
+const newpageRouter = require("./routes/newpage");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const hostelRouter = require("./routes/hostel");
@@ -39,11 +39,12 @@ const proctorialCellRouter = require("./routes/proctorialCell");
 const app = express();
 
 app.use(express.json({ limit: "5mb" }));
-bodyParser.urlencoded({ extended: true });
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json({ limit: "5mb" }));
 app.use(compression());
 app.use(cookieParser());
+app.use(bodyParser.json({ limit: "5mb" }));
+bodyParser.urlencoded({ extended: true });
+app.use( express.static( __dirname + '/public' ));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -87,18 +88,35 @@ app.use("/upcomingEvent", upcomingEventRouter);
 app.use("/academicCalendar", academicCalendarRouter);
 app.use("/search", searchRouter);
 app.use("/dept", departmentRouter);
-
+app.use('/newpage',newpageRouter)
 app.use("/resource", resourceRouter);
 
 app.use("/hostel", hostelRouter);
 app.use("/proctorialCell", proctorialCellRouter);
 
+app.get('/admin/newpage',(req,res)=>{
+  res.sendFile(__dirname + '/public/show.html');
+})
+
+app.get('/admin/newpage/add',(req,res)=>{
+  res.sendFile(__dirname + '/public/add.html');
+})
+
+app.get('/admin/newpage/edit/:id',(req,res)=>{
+  res.sendFile(__dirname + '/public/edit.html');
+})
+
+app.get('/admin/navbar',(req,res)=>{
+  res.sendFile(__dirname + '/public/navbar.html');
+})
+
+app.get('/admin/navbar/add',(req,res)=>{
+  res.sendFile(__dirname + '/public/navbaradd.html');
+})
+
+
+
 //Export----------------------------->
 module.exports = app;
 
-//test code here
 
-/**   "COMPANIES VISITED":"150+",
-        "HIGHEST PACKAGE":"1.2 CR",
-        "STARTUPS":"15+",
-        "NIRF ENGINEERING 2022":"52" */

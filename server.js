@@ -4,11 +4,14 @@ const app = require("./app");
 const { admin_panel, router } = require("./admin_panel");
 //----------------------------------->
 
-process.on("uncoughtException", (err) => {
-  console.log("uncought exception occured");
+process.on("unhandledRejection", (err) => {
+  console.log("unhandleed rejection occured");
   console.log(err.name, err.message);
-  process.exit(1);
+  server.close(() => {
+    process.exit(1);
+  });
 });
+
 
 dotenv.config({ path: "./.env" });
 
@@ -32,10 +35,9 @@ const server = app.listen(port, () => {
 //admin panel
 app.use(admin_panel.options.rootPath, router);
 
-process.on("unhandledRejection", (err) => {
-  console.log("unhandleed rejection occured");
+
+
+process.on("uncoughtException", (err) => {
   console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
-  });
+  process.exit(1);
 });
