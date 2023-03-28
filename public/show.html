@@ -43,7 +43,7 @@
       function showTable() {
         let table = document.getElementById("table");
         table.innerHTML = "";
-        let url = "http://localhost:8000/newpage";
+        let url = "https://wdmc-vsj1.onrender.com/newpage";
         fetch(url, {
           method: "GET",
           headers: {
@@ -97,7 +97,7 @@
       }
 
       async function handleDelete(id,show) {
-        let url = `http://localhost:8000/newpage/${id}`;
+        let url = `https://wdmc-vsj1.onrender.com/newpage/${id}`;
         show=show=="true"?false:true;
         
         await fetch(url, {

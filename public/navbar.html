@@ -159,7 +159,7 @@
         let table = document.getElementById("table");
         table.innerHTML = "";
 
-        let url = "http://localhost:8000/navbar";
+        let url = "https://wdmc-vsj1.onrender.com/navbar";
         fetch(url, {
           method: "GET",
           headers: {
@@ -227,7 +227,7 @@
       }
 
       async function handleDelete(id) {
-        let url = `http://localhost:8000/navbar/delete`;
+        let url = `https://wdmc-vsj1.onrender.com/navbar/delete`;
         let menu = document.getElementById("menu").value;
         let submenu = document.getElementById("submenu").value;
 
@@ -247,7 +247,6 @@
       }
 
       function handleEdit(id, name, link, order) {
-        let url = `http://localhost:8000/navbar/edit`;
         let menu = document.getElementById("menu").value;
         let submenu = document.getElementById("submenu").value;
 
@@ -265,7 +264,7 @@
 
       async function handleEditSubmit() {
         
-        let url = `http://localhost:8000/navbar/edit`;
+        let url = `https://wdmc-vsj1.onrender.com/navbar/edit`;
         let menu = document.getElementById("menu").value;
         let submenu = document.getElementById("submenu").value;
 
@@ -289,7 +288,7 @@
           },
         });
 
-        url=`http://localhost:8000/navbar/sort`;
+        url=`https://wdmc-vsj1.onrender.com/navbar/sort`;
 
         await fetch(url, {
           method: "POST",
