@@ -17,6 +17,9 @@ const Schema = new mongoose.Schema(
     new: {
       type: Boolean,
     },
+    show: {
+      type: Boolean,
+    },
     newPage: {
       type: String,
     },
