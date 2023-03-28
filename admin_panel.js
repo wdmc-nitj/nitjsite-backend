@@ -43,6 +43,17 @@ const Timeline = require("./models/timeline");
 const upcommingEvent = require("./models/upcomingEvent");
 const yearlyRanking = require("./models/yearlyRanking");
 
+const admissionHelpline = require("./models/admissionHelpline");
+const admissionUpdate = require("./models/admissionUpdate");
+const importantLink = require("./models/importantLink");
+const consultancy = require("./models/consultancy");
+const events = require("./models/events");
+const researchPublications = require("./models/researchPublications");
+const sponsoredProjects = require("./models/sponsoredProjects");
+const mous = require("./models/MoUs");
+const recruitmentUpdates = require("./models/recruitmentUpdates");
+
+
 AdminBro.registerAdapter(AdminBroMongoose);
 const AdminBroOptions = {
   resources: [
@@ -90,6 +101,15 @@ const AdminBroOptions = {
     Timeline,
     upcommingEvent,
     yearlyRanking,
+    admissionHelpline,
+    admissionUpdate,
+    importantLink,
+    consultancy,
+    events,
+    researchPublications,
+    sponsoredProjects,
+    mous,
+    recruitmentUpdates
   ],
 };
 const admin_panel = new AdminBro(AdminBroOptions);
