@@ -77,10 +77,7 @@ exports.sort = async (req, res) => {
       const subtype = req.body.submenu;
       
       let idx = obj[`${type}`].indexOf(`${subtype}`);
-      console.log(idx);
       data[`${type}`][idx]=navSort(data[`${type}`][idx])
-
-      
 
       Navbar.findOneAndUpdate({}, { $set: data }, (err, data) => {
         if (err) {
@@ -108,7 +105,6 @@ exports.update = async (req, res) => {
       if(typeof(order)!="number")
         order=Number(order);
       
-      console.log(type,subtype,link,name,id,order);
 
       let idx = obj[`${type}`].indexOf(`${subtype}`);
       data[`${type}`][idx].push({ name, link, id, order });
@@ -222,6 +218,50 @@ exports.create = async (req, res) => {
       });
       await navbar.save();
       res.status(200).send("Navbar created");
+    }
+  });
+};
+
+exports.edit = async (req, res) => {
+
+  Navbar.findOne({}, (err, data) => {
+    if (err) {
+      res.Status(500).send("Something wrong happend");
+    } else {
+      const type = req.body.menu;
+      const subtype = req.body.submenu;
+      const link = req.body.link;
+      const name = req.body.name;
+      const id = req.body.id;
+      const order = req.body.order;
+
+      let idx = obj[`${type}`].indexOf(`${subtype}`);
+      let ind = -1;
+
+      
+      for (let i = 2; i < data[`${type}`][idx].length; i++) {
+        if (data[`${type}`][idx][i].id === id) {
+          ind = i;
+          break;
+        }
+      }
+
+      if (ind === -1) return res.send("Something wrong happend");
+      
+
+      data[`${type}`][idx][ind].name = name;
+      data[`${type}`][idx][ind].link = link;
+      data[`${type}`][idx][ind].order = order;
+
+      
+
+      Navbar.findOneAndUpdate({}, { $set: data }, (err, data) => {
+        if (err) {
+          res.send("Something wrong happend");
+        } else {
+          res.send(data);
+        }
+      });
     }
   });
 };
