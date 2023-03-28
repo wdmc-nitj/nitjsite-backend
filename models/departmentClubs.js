@@ -5,17 +5,11 @@ const Schema=new mongoose.Schema({
         type:String,
         enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
     },
-    name:{
-        type:String
-    },
-    email:{
-        type:String
-    },
-    img:{
-        type:String
-    },
-    position:{
-        type:String
+    title: {type:String},
+    img: {type:String},
+    type:{
+      type:String,
+      enum:["Club","Coordinator","Team"]
     },
     
     sourceOfInfo: {
@@ -33,4 +27,4 @@ const Schema=new mongoose.Schema({
     }
 },{timestamps:true})
 
-module.exports=mongoose.model("Acadcord",Schema);
+module.exports=mongoose.model("departmentClubs",Schema);
