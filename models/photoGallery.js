@@ -14,6 +14,9 @@ const Schema = new mongoose.Schema(
       enum: ["photoGallery", "history", "homePageImageSlider"],
       default: "photoGallery",
     },
+    new: {
+      type: Boolean,
+    },
     show: {
       type: Boolean,
     },
