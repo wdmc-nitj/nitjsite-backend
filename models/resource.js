@@ -10,7 +10,17 @@ const Schema = new mongoose.Schema(
     },
     resourceType: {
       type: String,
-      enum: ["newsLetter", "bosMinutes", "other"],
+      enum: [
+        "newsLetter",
+        "academicCalender",
+        "annualReport",
+        "accountStatement",
+        "buildingAndWorkCommtteeMinutes",
+        "senateMinutes",
+        "financeCommitteeMinutes",
+        "bogMinutes",
+        "other",
+      ],
       trim: true,
     },
     resourceLink: {
@@ -22,6 +32,7 @@ const Schema = new mongoose.Schema(
       type: String,
       enum: ["pdf", "video", "audio", "image", "other"],
       trim: true,
+      default: "pdf",
     },
     resourceDescription: {
       type: String,
