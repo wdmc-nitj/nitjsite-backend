@@ -46,6 +46,8 @@ const upcommingEvent = require("./models/upcomingEvent");
 const yearlyRanking = require("./models/yearlyRanking");
 
 const User = require("./models/AdminBroUser");
+const { query } = require("express");
+const { filter } = require("compression");
 
 
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin'
@@ -72,7 +74,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -84,7 +98,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -96,7 +122,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -108,7 +146,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -120,7 +170,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -132,7 +194,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -144,7 +218,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -156,7 +242,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -168,7 +266,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -180,7 +290,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -192,7 +314,19 @@ const AdminBroOptions = {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -204,7 +338,20 @@ const AdminBroOptions = {
         navigation: 'Home', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                console.log(query_fetched)
+                query_fetched['filters.sourceOfInfoDepartment'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
@@ -216,7 +363,19 @@ const AdminBroOptions = {
         navigation: 'Home', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
-          list: { isAccessible: canEditDept },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           show: { isAccessible: canEditDept },
           bulkDelete: { isAccessible: canEditDept },
           new: { isAccessible: canEditDept },
