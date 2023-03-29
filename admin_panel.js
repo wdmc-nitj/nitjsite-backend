@@ -416,7 +416,7 @@ const AdminBroOptions = {
     { resource: Timeline, options: { navigation: 'About', actions: { list: { isAccessible: isAdmin } } } },
     { resource: upcommingEvent, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: yearlyRanking, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
-
+    { resource: Publication, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     {
       resource: User,
       options: {
