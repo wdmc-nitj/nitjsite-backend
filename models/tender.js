@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const TenderSchema = new mongoose.Schema(
   {
-    lastDateOfReceiptOfBids: { type: String, required: true },
-    dateOfOpeningTechnicalBids: { type: String, required: true },
+    lastDateOfReceiptOfBids: { type: Date, required: true },
+    dateOfOpeningTechnicalBids: { type: Date, required: true },
     desc: { type: String, default: "" },
     fileLink: { type: String, default: "" },
     imageLink: { type: String, default: "" },

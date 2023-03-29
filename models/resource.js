@@ -47,6 +47,10 @@ const Schema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    show: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
