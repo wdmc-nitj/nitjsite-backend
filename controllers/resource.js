@@ -23,7 +23,7 @@ exports.getResource = async (req, res) => {
       .then((Resource) => res.status(200).send(Resource))
       .catch((err) => res.status(404).send("Error: " + err));
   } else {
-    Resource.find({ show: true })
+    Resource.find()
       .then((Resource) => res.status(200).send(Resource))
       .catch((err) => res.status(404).send("Error: " + err));
   }
