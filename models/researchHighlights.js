@@ -6,7 +6,7 @@ const ResearchSchema = new Schema(
   {
     title: { type: String },
     desc: { type: String },
-    image: { type: String },
+    image: { type: String, required: true },
     order: {
       type: Number,
       default: 0,
