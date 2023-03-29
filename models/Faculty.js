@@ -279,13 +279,13 @@ const Schema = new mongoose.Schema({
     journal: {
         type: [
             {
-                "Journal": {
+                "Aurthor + Title": {
                     type: String
                 },
-                "Jouranal Title": {
+                "Name": {
                     type: String
                 },
-                "Jouranal Link": {
+                "Link": {
                     type: String
                 },
                 "Year": {

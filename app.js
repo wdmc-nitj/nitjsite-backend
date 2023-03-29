@@ -34,9 +34,13 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const hostelRouter = require("./routes/hostel");
 const proctorialCellRouter = require("./routes/proctorialCell");
+const { admin_panel, router } = require("./admin_panel");
 
 //initialize app
 const app = express();
+
+//admin panel
+app.use(admin_panel.options.rootPath, router);
 
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
