@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const PublicationSchema = new mongoose.Schema(
   {
-    authors: { type: String },
+    authors: { type: String, required: true },
+    title: { type: String, required: true },
     desc: { type: String },
     url: { type: String },
     show: { type: Boolean, default: true },

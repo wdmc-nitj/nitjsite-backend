@@ -5,8 +5,8 @@ const photoGalleryController = require("../controllers/photoGallery");
 //Router
 const Router = express.Router();
 
-Router.route("/").post(photoGalleryController.add).get(photoGalleryController.get);
-Router.route("/:id").patch(photoGalleryController.update).post(photoGalleryController.delete);
+Router.route("/").get(photoGalleryController.get);
+
 
 //Export----------------------------->
 module.exports = Router;

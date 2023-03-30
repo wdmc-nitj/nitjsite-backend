@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const PlacementStatSchema = new mongoose.Schema(
   {
-    placementStatName: { type: String },
-    placementStatValue: { type: String },
+    placementStatName: { type: String,required:true },
+    placementStatValue: { type: String,required:true },
     show: { type: Boolean, default: true },
     order: {
       type: Number,

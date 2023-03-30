@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const Schema = new mongoose.Schema(
   {
-    name: { type: String },
-    link: { type: String },
+    name: { type: String,required:true },
+    link: { type: String ,required:true},
     order: {
       type: Number,
     },

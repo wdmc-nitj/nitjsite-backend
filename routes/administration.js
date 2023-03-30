@@ -5,11 +5,10 @@ const administrationController = require('../controllers/administration');
 //Router
 const Router = express.Router();
 
-Router.route('/').post(administrationController.addAdministration).get(administrationController.getAdministration);
+Router.route('/').get(administrationController.getAdministration);
 
 Router.route('/get/all').get(administrationController.getAdministrationall);
 
-Router.route('/:id').patch(administrationController.updateAdministration).post(administrationController.deleteAdministration);
 
 
 //Export----------------------------->

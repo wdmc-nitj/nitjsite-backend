@@ -13,6 +13,7 @@ const Schema = new mongoose.Schema(
       default:"",
     },
     show: { type: Boolean, default: true },
+    new : { type: Boolean, default: true },
   },
   {
     timestamps: true,

@@ -5,11 +5,11 @@ const footer = require("../controllers/footer");
 //Router
 const Router = express.Router();
 
-Router.route("/").post(footer.addFooter).get(footer.getFooter);
+Router.route("/").get(footer.getFooter);
 
 Router.route("/get/all").get(footer.getFooterAll);
 
-Router.route("/:id").patch(footer.updateFooter).post(footer.deleteFooter);
+
 
 //Export----------------------------->
 module.exports = Router;

@@ -5,7 +5,7 @@ const newPageController = require("../controllers/newpage");
 //Router
 const Router = express.Router();
 
-Router.route("/").get(newPageController.getNewPage).post(newPageController.addNewpage);
+Router.route("/").get(newPageController.getNewPage);
 
 Router.route("/:id").get(newPageController.getNewPagebyId);
 

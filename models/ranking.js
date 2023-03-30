@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const RankingSchema = new mongoose.Schema(
   {
-    rankingName: { type: String },
-    rankingValue: { type: String },
+    rankingName: { type: String,required:true },
+    rankingValue: { type: String,required:true },
     show: { type: Boolean, default: true },
     order: {
       type: Number,
