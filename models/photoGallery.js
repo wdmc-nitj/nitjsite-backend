@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema(
   {
     name: { type: String },
-    link: { type: String },
+    link: { type: String ,required:true},
     order: {
       type: Number,
     },

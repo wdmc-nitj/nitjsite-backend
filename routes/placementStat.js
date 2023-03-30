@@ -6,14 +6,10 @@ const placementStatController = require("../controllers/placementStat");
 const Router = express.Router();
 
 Router.route("/")
-  .post(placementStatController.addPlacementStat)
   .get(placementStatController.showPlacementStat);
 
 Router.route("/get/all").get(placementStatController.showAllPlacementStat);
 
-Router.route("/:id")
-  .patch(placementStatController.updatePlacementStat)
-  .post(placementStatController.deletePlacementStat);
 
 //Export----------------------------->
 module.exports = Router;

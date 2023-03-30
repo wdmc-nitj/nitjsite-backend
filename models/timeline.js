@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const TimelineSchema = new mongoose.Schema(
   {
-    year: { type: Number },
-    desc: { type: String },
+    year: { type: Number,required:true },
+    desc: { type: String,required:true },
     show: { type: Boolean, default: true },
     order: {
       type: Number,
