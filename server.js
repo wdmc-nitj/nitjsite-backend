@@ -13,6 +13,8 @@ process.on("unhandledRejection", (err) => {
 
 dotenv.config({ path: "./.env" });
 
+mongoose.set('strictQuery', false);
+
 mongoose
   .connect(process.env.URI, {
     useNewUrlParser: true,
