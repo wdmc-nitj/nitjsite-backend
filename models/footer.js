@@ -14,7 +14,7 @@ const Schema = new mongoose.Schema(
     column:{
       type:Number,
       default:0,
-    }
+    },
     order: {
       type: Number,
       default: 0,

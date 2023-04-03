@@ -36,6 +36,8 @@ const hostelRouter = require("./routes/hostel");
 const proctorialCellRouter = require("./routes/proctorialCell");
 const { admin_panel, router } = require("./admin_panel");
 
+const admissionsRoutes = require('./routes/admissionsRoutes');
+
 //initialize app
 const app = express();
 
@@ -97,6 +99,8 @@ app.use("/resource", resourceRouter);
 
 app.use("/hostel", hostelRouter);
 app.use("/proctorialCell", proctorialCellRouter);
+
+app.use('/admissions', admissionsRoutes);
 
 app.get('/admin/newpage',(req,res)=>{
   res.sendFile(__dirname + '/public/show.html');
