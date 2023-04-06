@@ -21,9 +21,6 @@ mongoose
   })
   .then(() => {
     console.log("connection to database eshtablished");
-    app.listen(port, () => {
-      console.log(`Server started on port ${port}`);
-    });
   })
   .catch((err) => {
     console.log(err);
@@ -31,7 +28,9 @@ mongoose
 
 //server listening------------------------------------------------->
 const port = process.env.PORT || 8000;
-
+const server = app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
 
 
 
