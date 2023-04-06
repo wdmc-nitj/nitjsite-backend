@@ -7,6 +7,10 @@ const Schema = new mongoose.Schema(
     link: {
       type: Object,
     },
+    title:{
+      type:String,
+      default:""
+    },
     show: {
       type: Boolean,
       default: true,

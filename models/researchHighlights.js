@@ -33,12 +33,13 @@ const ResearchSchema = new Schema(
     sourceOfInfoDepartment: {
       type: String,
     },
-    type: { type: String, required: true },
+    type: { type: String },
     show: { type: Boolean, default: true },
     updateLogs: {
       type: Array,
       default: [],
     },
+    showviewall:{type:Boolean,default:true},
   },
   {
     timestamps: true,

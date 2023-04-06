@@ -65,6 +65,10 @@ const Schema = new mongoose.Schema(
     new: {
       type: Boolean,
       default: true,
+    },
+    newpage:{
+      type: Boolean,
+      default: true
     }
   },
   {

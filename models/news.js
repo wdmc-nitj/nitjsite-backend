@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema(
   {
     title: { type: String, required: true },
+    title2: { type: String, default: "" },
     desc: { type: String, default: "" },
     order: {
       type: Number,

@@ -34,6 +34,8 @@ const Schema = new mongoose.Schema(
     sourceOfInfoDepartment: {
       type: String,
     },
+    startDate:{type:Date},
+    endDate:{type:Date},
     show: { type: Boolean, default: true },
   },
   {

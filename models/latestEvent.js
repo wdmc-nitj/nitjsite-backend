@@ -34,6 +34,7 @@ const Schema = new mongoose.Schema(
       type: String,
     },
     show: { type: Boolean, default: true },
+    showviewall:{type:Boolean,default:true},
     updateLogs: {
       type: Array,
       default: [],
