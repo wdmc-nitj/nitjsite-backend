@@ -106,17 +106,17 @@ app.use('/admissions', admissionsRoutes);
 app.use('/research', researchRoutes);
 app.use('recruitments', recruitmentsRoutes);
 
-app.get('/admin/newpage',(req,res)=>{
-  res.sendFile(__dirname + '/public/show.html');
-})
-
-app.get('/admin/newpage/add',(req,res)=>{
+app.get('/admin/ckeditor',(req,res)=>{
   res.sendFile(__dirname + '/public/add.html');
 })
 
-app.get('/admin/newpage/edit/:id',(req,res)=>{
-  res.sendFile(__dirname + '/public/edit.html');
-})
+// app.get('/admin/newpage/add',(req,res)=>{
+//   res.sendFile(__dirname + '/public/add.html');
+// })
+
+// app.get('/admin/newpage/edit/:id',(req,res)=>{
+//   res.sendFile(__dirname + '/public/edit.html');
+// })
 
 app.get('/admin/navbar',(req,res)=>{
   res.sendFile(__dirname + '/public/navbar.html');

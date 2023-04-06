@@ -54,6 +54,12 @@ const researchPublications = require("./models/research/researchPublications");
 const sponsoredProjects = require("./models/research/sponsoredProjects");
 
 const RecruitmentUpdates = require("./models/recruitmentUpdates");
+const addmissionHelpline = require("./models/admissions/admissionHelpline");
+const addmissionUpdate= require("./models/admissions/admissionUpdate");
+const importantLink=require("./models/admissions/importantLink");
+
+const newpage=require('./models/newpage');
+
 
 const User = require("./models/AdminBroUser");
 const { query } = require("express");
@@ -411,7 +417,7 @@ const AdminBroOptions = {
     { resource: Navbar, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Footer, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
 
-
+  
     { resource: Clubs, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: About, options: { navigation: 'About', actions: { list: { isAccessible: isAdmin } } } },
     { resource: AcademicCalendar, options: { navigation: 'Academics', actions: { list: { isAccessible: isAdmin } } } },
@@ -436,7 +442,15 @@ const AdminBroOptions = {
     { resource: Timeline, options: { navigation: 'About', actions: { list: { isAccessible: isAdmin } } } },
     { resource: upcommingEvent, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: yearlyRanking, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
+
+    { resource: addmissionHelpline, options: { navigation: 'Admissions', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: addmissionUpdate, options: { navigation: 'Admissions', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: importantLink, options: { navigation: 'Admissions', actions: { list: { isAccessible: isAdmin } } } },
+
+
     { resource: Publication, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: newpage, options: { navigation: 'New Page', actions: { list: { isAccessible: isAdmin } } } },
+    
     {
       resource: User,
       options: {
