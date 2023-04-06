@@ -46,6 +46,7 @@ const upcommingEvent = require("./models/upcomingEvent");
 const yearlyRanking = require("./models/yearlyRanking");
 
 // Research Menu
+const researchMenuName = 'Research';
 const Consultancy = require("./models/research/consultancy");
 const Events = require("./models/research/events");
 const MoUs = require("./models/research/MoUs");
@@ -395,12 +396,12 @@ const AdminBroOptions = {
     ////// Assessable By Super Admin Only ///// 
 
     // Research Models
-    { resource: Consultancy, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
-    { resource: Events, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
-    { resource: MoUs, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
-    { resource: researchPublications.CitedResearch, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
-    { resource: researchPublications.RefereedResearch, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
-    { resource: sponsoredProjects, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: Consultancy, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: Events, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: MoUs, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: researchPublications.CitedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: researchPublications.RefereedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: sponsoredProjects, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
 
     { resource: Hostel, options: { navigation: 'Hostel', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Navbar, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
