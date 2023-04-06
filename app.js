@@ -38,6 +38,7 @@ const { admin_panel, router } = require("./admin_panel");
 
 const admissionsRoutes = require('./routes/admissionsRoutes');
 const researchRoutes = require('./routes/researchRoutes');
+const recruitmentsRoutes = require('./routes/recruitmentRoutes');
 
 //initialize app
 const app = express();
@@ -103,6 +104,7 @@ app.use("/proctorialCell", proctorialCellRouter);
 
 app.use('/admissions', admissionsRoutes);
 app.use('/research', researchRoutes);
+app.use('recruitments', recruitmentsRoutes);
 
 app.get('/admin/newpage',(req,res)=>{
   res.sendFile(__dirname + '/public/show.html');

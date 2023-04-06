@@ -53,6 +53,8 @@ const MoUs = require("./models/research/MoUs");
 const researchPublications = require("./models/research/researchPublications");
 const sponsoredProjects = require("./models/research/sponsoredProjects");
 
+const RecruitmentUpdates = require("./models/recruitmentUpdates");
+
 const User = require("./models/AdminBroUser");
 const { query } = require("express");
 const { filter } = require("compression");
@@ -402,6 +404,8 @@ const AdminBroOptions = {
     { resource: researchPublications.CitedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
     { resource: researchPublications.RefereedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
     { resource: sponsoredProjects, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+
+    { resource: RecruitmentUpdates, options: { navigation: 'Jobs', actions: { list: { isAccessible: isAdmin } } } },
 
     { resource: Hostel, options: { navigation: 'Hostel', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Navbar, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
