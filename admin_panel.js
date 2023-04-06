@@ -49,6 +49,8 @@ const addmissionHelpline = require("./models/admissions/admissionHelpline");
 const addmissionUpdate= require("./models/admissions/admissionUpdate");
 const importantLink=require("./models/admissions/importantLink");
 
+const newpage=require('./models/newpage');
+
 const User = require("./models/AdminBroUser");
 const { query } = require("express");
 const { filter } = require("compression");
@@ -427,6 +429,8 @@ const AdminBroOptions = {
 
 
     { resource: Publication, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: newpage, options: { navigation: 'New Page', actions: { list: { isAccessible: isAdmin } } } },
+    
     {
       resource: User,
       options: {
