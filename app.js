@@ -104,7 +104,7 @@ app.use("/proctorialCell", proctorialCellRouter);
 
 app.use('/admissions', admissionsRoutes);
 app.use('/research', researchRoutes);
-app.use('recruitments', recruitmentsRoutes);
+app.use('/recruitments', recruitmentsRoutes);
 
 app.get('/admin/ckeditor',(req,res)=>{
   res.sendFile(__dirname + '/public/add.html');
