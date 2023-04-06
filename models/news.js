@@ -35,6 +35,10 @@ const Schema = new mongoose.Schema(
       type: String,
       enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
     },
+    type:{
+      type:String,
+      enum:['Academics']
+    },
     show: { type: Boolean, default: true },
     updateLogs: {
       type: Array,
