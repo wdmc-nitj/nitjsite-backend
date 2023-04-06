@@ -394,6 +394,7 @@ const AdminBroOptions = {
 
     ////// Assessable By Super Admin Only ///// 
 
+    // Research Models
     { resource: Consultancy, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Events, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
     { resource: MoUs, options: { navigation: 'Research', actions: { list: { isAccessible: isAdmin } } } },
