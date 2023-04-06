@@ -36,7 +36,7 @@ const PlacementStat = require("./models/placementStat");
 const ProctorialCell = require("./models/proctorialCell");
 const Publication = require("./models/publication");
 const Ranking = require("./models/ranking");
-const Research = require("./models/researchHighlights");
+const researchHighlights = require("./models/researchHighlights");
 const Resource = require("./models/resource");
 const StudentTeam = require("./models/studentTeam");
 const Tender = require("./models/tender");
@@ -45,11 +45,21 @@ const Timeline = require("./models/timeline");
 const upcommingEvent = require("./models/upcomingEvent");
 const yearlyRanking = require("./models/yearlyRanking");
 
+// Research Menu
+const researchMenuName = 'Research';
+const Consultancy = require("./models/research/consultancy");
+const Events = require("./models/research/events");
+const MoUs = require("./models/research/MoUs");
+const researchPublications = require("./models/research/researchPublications");
+const sponsoredProjects = require("./models/research/sponsoredProjects");
+
+const RecruitmentUpdates = require("./models/recruitmentUpdates");
 const addmissionHelpline = require("./models/admissions/admissionHelpline");
 const addmissionUpdate= require("./models/admissions/admissionUpdate");
 const importantLink=require("./models/admissions/importantLink");
 
 const newpage=require('./models/newpage');
+
 
 const User = require("./models/AdminBroUser");
 const { query } = require("express");
@@ -393,6 +403,16 @@ const AdminBroOptions = {
 
     ////// Assessable By Super Admin Only ///// 
 
+    // Research Models
+    { resource: Consultancy, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: Events, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: MoUs, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: researchPublications.CitedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: researchPublications.RefereedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: sponsoredProjects, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+
+    { resource: RecruitmentUpdates, options: { navigation: 'Jobs', actions: { list: { isAccessible: isAdmin } } } },
+
     { resource: Hostel, options: { navigation: 'Hostel', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Navbar, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Footer, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
@@ -414,7 +434,7 @@ const AdminBroOptions = {
     { resource: PlacementStat, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: ProctorialCell, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Ranking, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
-    { resource: Research, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: researchHighlights, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Resource, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: StudentTeam, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Tender, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
