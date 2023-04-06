@@ -20,7 +20,7 @@ const Schema = new mongoose.Schema(
     show: {
       type: Boolean,
     },
-    newPage: {
+    explore: {
       type: String,
     },
     sourceOfInfoName: {

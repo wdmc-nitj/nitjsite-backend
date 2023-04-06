@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema(
   {
     title: { type: String, required: true },
+    title2: { type: String, default: "" },
     desc: { type: String, default: "" },
     order: {
       type: Number,
@@ -33,6 +34,10 @@ const Schema = new mongoose.Schema(
     sourceOfInfoDepartment: {
       type: String,
       enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
+    },
+    type:{
+      type:String,
+      enum:['Academics']
     },
     show: { type: Boolean, default: true },
     updateLogs: {

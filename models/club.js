@@ -8,6 +8,7 @@ const Schema = new mongoose.Schema(
     desc: { type: String, default: "" },
     type: { type: String, default: "" },
     img: { type: String, default: "", required: true },
+    url:{type:String,default:""},
     show: { type: Boolean, default: true },
     order: {
       type: Number,
