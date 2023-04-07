@@ -19,7 +19,7 @@ const validateID = (id) => {
 };
 
 // logUpdates
-const regexForUpdateLogs = '/^(findOneAnd|findOneAndUpdate|insertOne|updateOne|updateMany|deleteOne|deleteMany)/';
+const regexForUpdateLogs = '/^findOneAnd/';
 async function logUpdates(next) {
     // Check updated fields
     const updatedFields = Object.keys(this._update["$set"]);
