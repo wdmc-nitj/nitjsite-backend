@@ -35,6 +35,7 @@ const bodyParser = require("body-parser");
 const hostelRouter = require("./routes/hostel");
 const proctorialCellRouter = require("./routes/proctorialCell");
 const { admin_panel, router } = require("./admin_panel");
+const upload = require("./routes/upload");
 
 const admissionsRoutes = require('./routes/admissionsRoutes');
 
@@ -96,6 +97,7 @@ app.use("/search", searchRouter);
 app.use("/dept", departmentRouter);
 app.use('/newpage',newpageRouter)
 app.use("/resource", resourceRouter);
+app.use("/upload", upload);
 
 app.use("/hostel", hostelRouter);
 app.use("/proctorialCell", proctorialCellRouter);
@@ -104,6 +106,10 @@ app.use('/admissions', admissionsRoutes);
 
 app.get('/admin/ckeditor',(req,res)=>{
   res.sendFile(__dirname + '/public/add.html');
+})
+
+app.get('/admin/upload',(req,res)=>{
+  res.sendFile(__dirname + '/public/upload.html');
 })
 
 // app.get('/admin/newpage/add',(req,res)=>{

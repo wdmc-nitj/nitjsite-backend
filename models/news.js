@@ -17,7 +17,7 @@ const Schema = new mongoose.Schema(
     },
     newPage: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     pdfLink: {
       type: String,
@@ -33,13 +33,39 @@ const Schema = new mongoose.Schema(
     },
     sourceOfInfoDepartment: {
       type: String,
-      enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
+      enum: [
+        "bt",
+        "ch",
+        "cy",
+        "ce",
+        "cse",
+        "ee",
+        "ece",
+        "hm",
+        "ipe",
+        "it",
+        "ice",
+        "ma",
+        "me",
+        "ph",
+        "tt",
+        "cf",
+      ],
     },
-    type:{
-      type:String,
-      enum:['Academics']
+    type: {
+      type: String,
+      enum: [
+        "Academics",
+        "Admissions",
+        "Tenders",
+        "Jobs",
+        "Academic",
+        "Achievements",
+        "others",
+      ],
     },
     show: { type: Boolean, default: true },
+    showviewall:{type:Boolean,default:true},
     updateLogs: {
       type: Array,
       default: [],
