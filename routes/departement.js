@@ -88,6 +88,8 @@ const {
   getAllProgrammes,
   updateProgrammes,
 } = require("../controllers/programmes");
+const { getAllTimeTable } = require("../controllers/deptTimeTable");
+const { getAllSyllabus } = require("../controllers/deptSyllabus");
 
 const Router = express.Router();
 
