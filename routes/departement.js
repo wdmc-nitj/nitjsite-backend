@@ -169,4 +169,7 @@ Router.post("/:dept/confirmation", resetController.resetEmailHandler);
 Router.get("/:dept/confirmation/:token", resetController.checkToken);
 Router.post("/:dept/confirmation/submit/:token", resetController.modifyPassword);
 
+Router.get("/:dept/TimeTable",getAllTimeTable);
+Router.get("/:dept/Syllabus",getAllSyllabus);
+
 module.exports = Router;
