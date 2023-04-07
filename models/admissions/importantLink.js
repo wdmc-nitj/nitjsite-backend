@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 
 const linkSchema = new Schema(Object.assign({
     title: {
@@ -20,6 +20,7 @@ const linkSchema = new Schema(Object.assign({
     },
 }, commonFieldsForAll), { timestamps: true });
 
+linkSchema.pre(regexForUpdateLogs, logUpdates);
 
 const link = mongoose.model('admissionLink', linkSchema);
 

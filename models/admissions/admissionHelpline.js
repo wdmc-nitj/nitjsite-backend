@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, logUpdates, regexForUpdateLogs } = require('../../utils');
 const Schema = mongoose.Schema;
 
 const helplineSchema = new Schema(Object.assign({
@@ -61,6 +61,8 @@ const helplineSchema = new Schema(Object.assign({
         }
     },
 }, commonFieldsForAll), { timestamps: true });
+
+helplineSchema.pre(regexForUpdateLogs, logUpdates);
 
 const helpline = mongoose.model('admissionHelpline', helplineSchema);
 

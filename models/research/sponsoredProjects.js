@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
 const SponsoredProjectSchema = new Schema(Object.assign({
@@ -20,6 +20,8 @@ const SponsoredProjectSchema = new Schema(Object.assign({
         required: true
     },
 }, commonFieldsForAll), { timestamps: true });
+
+SponsoredProjectSchema.pre(regexForUpdateLogs, logUpdates);
 
 const SponsoredProject = mongoose.model('SponsoredProject', SponsoredProjectSchema);
 

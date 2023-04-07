@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
 const updateSchema = new Schema(Object.assign({
@@ -25,6 +25,8 @@ const updateSchema = new Schema(Object.assign({
         enum: ['BTECH', 'MTECH-CCMT', 'MTECH-SELF', 'MSC', 'MBA', 'PHD', 'FOREIGN'],
     },
 }, commonFieldsForAll), { timestamps: true });
+
+updateSchema.pre(regexForUpdateLogs, logUpdates);
 
 const update = mongoose.model('admissionUpdate', updateSchema);
 

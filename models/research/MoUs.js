@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
 const MoUSchema = new Schema(Object.assign({
@@ -34,5 +34,8 @@ const MoUSchema = new Schema(Object.assign({
     },
 }, commonFieldsForAll), { timestamps: true });
 
+MoUSchema.pre(regexForUpdateLogs, logUpdates);
+
 const MoU = mongoose.model('MoU', MoUSchema);
+
 module.exports = MoU;

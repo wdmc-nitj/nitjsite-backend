@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
 const ConsultancySchema = new Schema(Object.assign({
@@ -28,6 +28,8 @@ const ConsultancySchema = new Schema(Object.assign({
         required: true
     },
 }, commonFieldsForAll), { timestamps: true });
+
+ConsultancySchema.pre(regexForUpdateLogs, logUpdates);
 
 const Consultancy = mongoose.model('Consultancy', ConsultancySchema);
 

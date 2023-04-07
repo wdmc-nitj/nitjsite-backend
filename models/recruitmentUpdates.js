@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../utils');
 const Schema = mongoose.Schema;
 
 const recruitmentUpdateSchema = new Schema(Object.assign({
@@ -17,6 +17,8 @@ const recruitmentUpdateSchema = new Schema(Object.assign({
         enum: ['faculty', 'nonFaculty', 'faculty-contract', 'nonFaculty-contract']
     },
 }, commonFieldsForAll), { timestamps: true });
+
+recruitmentUpdateSchema.pre(regexForUpdateLogs, logUpdates);
 
 const RecruitmentUpdate = mongoose.model('RecruitmentUpdate', recruitmentUpdateSchema);
 

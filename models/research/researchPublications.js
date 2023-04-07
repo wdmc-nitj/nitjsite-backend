@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
 
@@ -121,6 +121,9 @@ const refereedResearchSchema = new Schema(Object.assign({
         validate: stringValidator
     },
 }, commonFieldsForAll), { timestamps: true });
+
+citedResearchSchema.pre(regexForUpdateLogs, logUpdates);
+refereedResearchSchema.pre(regexForUpdateLogs, logUpdates);
 
 const CitedResearch = mongoose.model('CitedResearch', citedResearchSchema);
 const RefereedResearch = mongoose.model('RefereedResearch', refereedResearchSchema);

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(Object.assign({
@@ -24,7 +24,9 @@ const eventSchema = new Schema(Object.assign({
         required: true,
         enum: ['conference', 'seminar', 'stc_fdp', 'workshop']
     },
-}, commonFieldsForAll));
+}, commonFieldsForAll), { timestamps: true });
+
+eventSchema.pre(regexForUpdateLogs, logUpdates);
 
 const event = mongoose.model('event', eventSchema);
 

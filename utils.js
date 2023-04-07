@@ -18,6 +18,38 @@ const validateID = (id) => {
     return Promise.resolve();
 };
 
+// logUpdates
+const regexForUpdateLogs = '/^(findOneAnd|findOneAndUpdate|insertOne|updateOne|updateMany|deleteOne|deleteMany)/';
+async function logUpdates(next) {
+    // Check updated fields
+    const updatedFields = Object.keys(this._update["$set"]);
+
+    // Compare fields with existing document in database
+    const existingDoc = await this.model.findOne(this.getQuery());
+
+    const changedFields = updatedFields.filter((field) => {
+        return existingDoc[`${field}`] !== this._update["$set"][`${field}`];
+    });
+
+    // Remove unnecessary fields from changed fields
+    const unnecessaryFields = ["updatedAt", "updateLogs", "_id", "__v", "order"];
+
+    const filteredChangedFields = changedFields.filter((field) => {
+        return !unnecessaryFields.includes(field);
+    });
+
+    const updateLogsPrevious = existingDoc.updateLogs;
+    const updateLogsNew = `${new Date().toLocaleString()} - ${filteredChangedFields.join(" ")}`;
+
+    // Update the document's updateLogs field
+    this._update["$set"].updateLogs = updateLogsPrevious
+        ? `${updateLogsPrevious}\n${updateLogsNew}`
+        : updateLogsNew;
+
+    // Call the next middleware in the chain
+    next();
+}
+
 const commonFieldsForAll = {
     visible: {
         type: Boolean,
@@ -62,5 +94,7 @@ const commonFieldsForAll = {
 module.exports = {
     sendError,
     validateID,
-    commonFieldsForAll
+    commonFieldsForAll,
+    logUpdates,
+    regexForUpdateLogs
 };
