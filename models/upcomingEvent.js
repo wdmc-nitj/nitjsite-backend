@@ -18,6 +18,7 @@ const Schema = new mongoose.Schema(
     },
     newPage: {
       type: Boolean,
+      default: false,
     },
     pdfLink: {
       type: String,

@@ -82,6 +82,10 @@ const {
   updateAwards,
   deleteAwards,
 } = require("../controllers/awardsAndHonors");
+const { getByDeptConsultancy, getAllConsultancy } = require("../controllers/deptConsultancy");
+const { getByDeptPublication } = require("../controllers/deptPublications");
+const { getByDeptProject } = require("../controllers/deptProjects");
+const { getByDeptClubs } = require("../controllers/deptClubs");
 
 const Router = express.Router();
 
@@ -158,4 +162,8 @@ Router.post("/:dept/confirmation", resetController.resetEmailHandler);
 Router.get("/:dept/confirmation/:token", resetController.checkToken);
 Router.post("/:dept/confirmation/submit/:token", resetController.modifyPassword);
 
+Router.get("/:dept/Consultancy",getByDeptConsultancy);
+Router.get("/:dept/Publications",getByDeptPublication);
+Router.get("/:dept/Projects",getByDeptProject);
+Router.get("/:dept/SocietyClubs",getByDeptClubs);
 module.exports = Router;

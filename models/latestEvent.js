@@ -6,7 +6,6 @@ const Schema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     desc: { type: String, default: "" },
-    image: { type: String, default: "", required: true },
     order: {
       type: Number,
       default: 0,
