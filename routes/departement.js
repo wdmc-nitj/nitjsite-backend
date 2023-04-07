@@ -82,6 +82,12 @@ const {
   updateAwards,
   deleteAwards,
 } = require("../controllers/awardsAndHonors");
+const {
+  addProgrammes,
+  deleteProgrammes,
+  getAllProgrammes,
+  updateProgrammes,
+} = require("../controllers/programmes");
 
 const Router = express.Router();
 
@@ -153,6 +159,11 @@ Router.get("/:dept/awardsAndHonors", getByDeptAwards);
 Router.post("/:dept/awardsAndHonors", addAwards);
 Router.put("/:dept/awardsAndHonors/:id", updateAwards);
 Router.delete("/:dept/awardsAndHonors/:id", deleteAwards);
+
+Router.get("/:dept/programmes", getAllProgrammes);
+Router.post("/:dept/programmes", addProgrammes);
+Router.put("/:dept/programmes/:id", updateProgrammes);
+Router.delete("/:dept/programmes/:id", deleteProgrammes);
 
 Router.post("/:dept/confirmation", resetController.resetEmailHandler);
 Router.get("/:dept/confirmation/:token", resetController.checkToken);

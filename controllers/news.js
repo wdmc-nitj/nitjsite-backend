@@ -33,11 +33,11 @@ exports.getNews = async (req, res) => {
             .catch((err) => res.status(400).send("Error: " + err));
     } else if (req.query.title !== undefined) {
         const title = req.query.title.split("-").join(" ");
-        console.log(title);
         return LatestNews.find({ title: title })
             .then((news) => res.status(200).send(news))
             .catch((err) => res.status(400).send("Error: " + err));
     } else {
+        
         LatestNews.find({ show: true })
             .then((news) => {res.status(200).send(news)})
             .catch((err) => res.status(400).send("Error: " + err));
