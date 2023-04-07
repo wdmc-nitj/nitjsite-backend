@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { commonFieldsForAll } = require('../../utils');
 const Schema = mongoose.Schema;
 
 
@@ -10,7 +11,7 @@ const stringValidator = {
     message: props => `${props.value} is not a valid string! Please enter a valid string.`
 };
 
-const citedResearchSchema = new Schema({
+const citedResearchSchema = new Schema(Object.assign({
     document: {     // pair of document name and link to document
         type: {
             name: {
@@ -104,49 +105,9 @@ const citedResearchSchema = new Schema({
         required: true,
         notEmpty: true
     },
-    visible: {  // visibility of the research
-        type: Boolean,
-        default: true,
-        required: true,
-        notEmpty: true,
-        validate: {
-            validator: function (v) {
-                return typeof v === 'boolean';
-            },
-            message: props => `${props.value} is not a valid visibility! Please enter a boolean value.`
-        }
-    },
-    visibilityChangedAt: {
-        type: Date,
-        default: null
-    },
-    srcName: {
-        type: String,
-        default: null
-    },
-    srcDept: {
-        type: String,
-        default: null
-    },
-    srcDes: {
-        type: String,
-        default: null
-    },
-    srcEmail: {
-        type: String,
-        default: null
-    },
-    order: {
-        type: Number,
-        default: 0
-    },
-    new: {
-        type: Boolean,
-        default: true
-    }
-}, { timestamps: true });
+}, commonFieldsForAll), { timestamps: true });
 
-const refereedResearchSchema = new Schema({
+const refereedResearchSchema = new Schema(Object.assign({
     description: {  // description of the research
         type: String,
         required: true,
@@ -159,47 +120,7 @@ const refereedResearchSchema = new Schema({
         notEmpty: true,
         validate: stringValidator
     },
-    visible: {  // visibility of the research
-        type: Boolean,
-        default: true,
-        required: true,
-        notEmpty: true,
-        validate: {
-            validator: function (v) {
-                return typeof v === 'boolean';
-            },
-            message: props => `${props.value} is not a valid visibility! Please enter a boolean value.`
-        }
-    },
-    visibilityChangedAt: {
-        type: Date,
-        default: null
-    },
-    srcName: {
-        type: String,
-        default: null
-    },
-    srcDept: {
-        type: String,
-        default: null
-    },
-    srcDes: {
-        type: String,
-        default: null
-    },
-    srcEmail: {
-        type: String,
-        default: null
-    },
-    order: {
-        type: Number,
-        default: 0
-    },
-    new: {
-        type: Boolean,
-        default: true
-    }
-}, { timestamps: true });
+}, commonFieldsForAll), { timestamps: true });
 
 const CitedResearch = mongoose.model('CitedResearch', citedResearchSchema);
 const RefereedResearch = mongoose.model('RefereedResearch', refereedResearchSchema);

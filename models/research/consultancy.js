@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { commonFieldsForAll } = require('../../utils');
 const Schema = mongoose.Schema;
 
-const ConsultancySchema = new Schema({
+const ConsultancySchema = new Schema(Object.assign({
     facultyName: {
         type: String,
         required: true
@@ -26,39 +27,7 @@ const ConsultancySchema = new Schema({
         type: Number,
         required: true
     },
-    visible: {
-        type: Boolean,
-        default: true
-    },
-    visibilityChangedAt: {
-        type: Date,
-        default: null
-    },
-    srcName: {
-        type: String,
-        default: null
-    },
-    srcDept: {
-        type: String,
-        default: null
-    },
-    srcDes: {
-        type: String,
-        default: null
-    },
-    srcEmail: {
-        type: String,
-        default: null
-    },
-    order: {
-        type: Number,
-        default: 0
-    },
-    new: {
-        type: Boolean,
-        default: true
-    }
-}, { timestamps: true });
+}, commonFieldsForAll), { timestamps: true });
 
 const Consultancy = mongoose.model('Consultancy', ConsultancySchema);
 

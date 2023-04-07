@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { commonFieldsForAll } = require('../../utils');
 const Schema = mongoose.Schema;
 
-const helplineSchema = new Schema({
+const helplineSchema = new Schema(Object.assign({
     degree: {
         type: String,
         required: true,
@@ -59,47 +60,7 @@ const helplineSchema = new Schema({
             message: props => `${props.value} is not a valid time!`
         }
     },
-    visible: {
-        type: Boolean,
-        required: true,
-        default: true,
-        notEmpty: true,
-        validate: {
-            validator: function (v) {
-                return typeof v === 'boolean';
-            },
-            message: props => `${props.value} is not a valid boolean!`
-        }
-    },
-    visibilityChangedAt: {
-        type: Date,
-        default: null
-    },
-    srcName: {
-        type: String,
-        default: null
-    },
-    srcDept: {
-        type: String,
-        default: null
-    },
-    srcDes: {
-        type: String,
-        default: null
-    },
-    srcEmail: {
-        type: String,
-        default: null
-    },
-    order: {
-        type: Number,
-        default: 0
-    },
-    new: {
-        type: Boolean,
-        default: true
-    }
-}, { timestamps: true });
+}, commonFieldsForAll), { timestamps: true });
 
 const helpline = mongoose.model('admissionHelpline', helplineSchema);
 

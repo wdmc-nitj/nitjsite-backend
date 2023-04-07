@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { commonFieldsForAll } = require('../utils');
 const Schema = mongoose.Schema;
 
-const recruitmentUpdateSchema = new Schema({
+const recruitmentUpdateSchema = new Schema(Object.assign({
     title: {
         type: String,
         required: true
@@ -15,40 +16,7 @@ const recruitmentUpdateSchema = new Schema({
         required: true,
         enum: ['faculty', 'nonFaculty', 'faculty-contract', 'nonFaculty-contract']
     },
-    visible: {
-        type: Boolean,
-        required: true,
-        default: true
-    },
-    visibilityChangedAt: {
-        type: Date,
-        default: null
-    },
-    srcName: {
-        type: String,
-        default: null
-    },
-    srcDept: {
-        type: String,
-        default: null
-    },
-    srcDes: {
-        type: String,
-        default: null
-    },
-    srcEmail: {
-        type: String,
-        default: null
-    },
-    order: {
-        type: Number,
-        default: 0
-    },
-    new: {
-        type: Boolean,
-        default: true
-    }
-});
+}, commonFieldsForAll), { timestamps: true });
 
 const RecruitmentUpdate = mongoose.model('RecruitmentUpdate', recruitmentUpdateSchema);
 

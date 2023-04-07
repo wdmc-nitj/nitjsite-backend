@@ -18,8 +18,49 @@ const validateID = (id) => {
     return Promise.resolve();
 };
 
+const commonFieldsForAll = {
+    visible: {
+        type: Boolean,
+        default: true,
+        required: true,
+    },
+    sourceOfInfo: {
+        type: {
+            name: {
+                type: String,
+                default: null
+            },
+            department: {
+                type: String,
+                default: null
+            },
+            designation: {
+                type: String,
+                default: null
+            },
+            email: {
+                type: String,
+                default: null
+            },
+        }
+    },
+    order: {
+        type: Number,
+        default: 0
+    },
+    new: {
+        type: Boolean,
+        default: true
+    },
+    visibilityChangedAt: {
+        type: Date,
+        default: null
+    },
+};
+
 // exports these functions to be used in other files
 module.exports = {
     sendError,
-    validateID
+    validateID,
+    commonFieldsForAll
 };
