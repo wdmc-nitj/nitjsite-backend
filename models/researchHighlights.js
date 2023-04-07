@@ -17,6 +17,7 @@ const ResearchSchema = new Schema(
     },
     newPage: {
       type: Boolean,
+      default: false,
     },
     pdfLink: {
       type: String,

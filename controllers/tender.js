@@ -12,21 +12,17 @@ exports.addTender = async (req, res) => {
 };
 
 exports.showTender = async (req, res) => {
-  if (req.params.id !== undefined) {
-    Tender.findById(req.params.id)
-      .then((data) => res.status(200).json(data))
-      .catch((err) => res.status(400).json("Error: " + err));
-  } else {
-    Tender.find({ show: true })
-      .then((data) => res.status(200).json(data))
-      .catch((err) => res.status(400).json("Error: " + err));
-  }
+  Tender.find({ show: true })
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(400).json("Error: " + err));
 };
 
 exports.showTenderbyId = async (req, res) => {
-  Tender.findById(req.params.id)
-    .then((data) => res.status(200).json(data))
+  if(req.params.id){
+    Tender.findById(req.params.id)
+    .then((data) => res.status(200).send(data))
     .catch((err) => res.status(400).json("Error: " + err));
+  }
 };
 
 exports.updateTender = async (req, res) => {

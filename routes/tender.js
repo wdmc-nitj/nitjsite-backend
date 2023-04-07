@@ -5,9 +5,9 @@ const tenderController = require("../controllers/tender");
 //Router
 const Router = express.Router();
 
-Router.route("/").get(tenderController.showTender);
+Router.route("/:id").get(tenderController.showTenderbyId);
 
-Router.route("/get/all").get(tenderController.showAllTender);
+Router.route("/get/all").get(tenderController.showTender);
 
 
 
