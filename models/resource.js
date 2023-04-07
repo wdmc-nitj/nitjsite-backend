@@ -19,6 +19,7 @@ const Schema = new mongoose.Schema(
         "senateMinutes",
         "financeCommitteeMinutes",
         "bogMinutes",
+        "RTI replies",
         "other",
       ],
       trim: true,

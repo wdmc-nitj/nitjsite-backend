@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
-const SponsoredProjectSchema = new Schema({
+const SponsoredProjectSchema = new Schema(Object.assign({
     title: {
         type: String,
         required: true
@@ -18,39 +19,9 @@ const SponsoredProjectSchema = new Schema({
         type: Number,
         required: true
     },
-    visible: {
-        type: Boolean,
-        default: true
-    },
-    visibilityChangedAt: {
-        type: Date,
-        default: null
-    },
-    srcName: {
-        type: String,
-        default: null
-    },
-    srcDept: {
-        type: String,
-        default: null
-    },
-    srcDes: {
-        type: String,
-        default: null
-    },
-    srcEmail: {
-        type: String,
-        default: null
-    },
-    order: {
-        type: Number,
-        default: 0
-    },
-    new: {
-        type: Boolean,
-        default: true
-    }
-}, { timestamps: true });
+}, commonFieldsForAll), { timestamps: true });
+
+SponsoredProjectSchema.pre(regexForUpdateLogs, logUpdates);
 
 const SponsoredProject = mongoose.model('SponsoredProject', SponsoredProjectSchema);
 

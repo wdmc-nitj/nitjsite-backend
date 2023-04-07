@@ -2,23 +2,22 @@ const mongoose = require("mongoose");
 //----------------------------------->
 
 //Schema---------------------------->
-const Schema = new mongoose.Schema(
+const DeptNewsSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    date: { type: Date, required: true },
-    link: { type: String, default: "" },
+    title2: { type: String, default: "" },
+    desc: { type: String, default: "" },
     order: {
       type: Number,
       default: 0,
     },
-    img: { type: String, default: "" },
     new: {
       type: Boolean,
       default: true,
     },
     newPage: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     pdfLink: {
       type: String,
@@ -34,18 +33,27 @@ const Schema = new mongoose.Schema(
     },
     sourceOfInfoDepartment: {
       type: String,
+      enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
     },
-    startDate:{type:Date},
-    endDate:{type:Date},
+    type:{
+      type:String,
+      enum:['Academics']
+    },
     show: { type: Boolean, default: true },
+    updateLogs: {
+      type: Array,
+      default: [],
+    },
   },
   {
     timestamps: true,
   }
 );
 
+//pre update hook for updateLogs---------------->
+
 //Model---------------------------->
-const Model = mongoose.model("UpcomingEvent", Schema);
+const Model = mongoose.model("deptNews", DeptNewsSchema);
 
 //Export----------------------------->
 module.exports = Model;

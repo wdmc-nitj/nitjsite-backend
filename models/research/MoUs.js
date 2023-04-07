@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
 const Schema = mongoose.Schema;
 
-const MoUSchema = new Schema({
+const MoUSchema = new Schema(Object.assign({
     orgName: {  // name of the organization
         type: String,
         required: true,
@@ -31,46 +32,10 @@ const MoUSchema = new Schema({
         notEmpty: true,
         enum: ['industries', 'indian_institutes', 'international_institutes']
     },
-    visible: {  // visibility of MoU
-        type: Boolean,
-        default: true,
-        required: true,
-        notEmpty: true,
-        validate: {
-            validator: function (v) {
-                return typeof v === 'boolean';
-            }
-        }
-    },
-    visibilityChangedAt: {
-        type: Date,
-        default: null
-    },
-    srcName: {
-        type: String,
-        default: null
-    },
-    srcDept: {
-        type: String,
-        default: null
-    },
-    srcDes: {
-        type: String,
-        default: null
-    },
-    srcEmail: {
-        type: String,
-        default: null
-    },
-    order: {
-        type: Number,
-        default: 0
-    },
-    new: {
-        type: Boolean,
-        default: true
-    }
-}, { timestamps: true });
+}, commonFieldsForAll), { timestamps: true });
+
+MoUSchema.pre(regexForUpdateLogs, logUpdates);
 
 const MoU = mongoose.model('MoU', MoUSchema);
+
 module.exports = MoU;
