@@ -2,12 +2,7 @@ const express = require("express");
 const authController = require("../controllers/authController");
 const resetController = require('../controllers/resetPassword');
 
-const {
-  getByDeptAcadcord,
-  updateAcadcord,
-  deleteAcadcord,
-  addAcadcord,
-} = require("../controllers/acadcord");
+
 const {
   getByDeptAchievement,
   addAchievement,
@@ -86,6 +81,7 @@ const { getByDeptConsultancy, getAllConsultancy } = require("../controllers/dept
 const { getByDeptPublication } = require("../controllers/deptPublications");
 const { getByDeptProject } = require("../controllers/deptProjects");
 const { getByDeptClubs } = require("../controllers/deptClubs");
+const { getByDeptCoordinator } = require("../controllers/deptCoordinator");
 
 const Router = express.Router();
 
@@ -96,10 +92,8 @@ Router.post(
 Router.post("/:dept/logout",authController.deleteSession);
 // Router.get('/:dept/Faculty/:id', authController.checkAuthentication)
 
-Router.get("/:dept/Acadcord", getByDeptAcadcord);
-Router.post("/:dept/Acadcord", addAcadcord);
-Router.delete("/:dept/Acadcord/:id", deleteAcadcord);
-Router.put("/:dept/Acadcord/:id", updateAcadcord);
+Router.get("/:dept/Acadcord", getByDeptCoordinator);
+
 
 Router.get("/:dept/Faculty", getByDeptFaculty);
 Router.get("/:dept/Faculty/:id",authController.signInAuthentication,getByIdFaculty);
