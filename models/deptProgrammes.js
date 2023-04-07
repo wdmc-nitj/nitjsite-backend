@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const DeptProgrammeSchema = new mongoose.Schema(
     {
-
         "Name": {
             type: String
         },
