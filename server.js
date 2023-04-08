@@ -15,6 +15,9 @@ dotenv.config({ path: "./.env" });
 
 mongoose.set('strictQuery', false);
 
+//server listening------------------------------------------------->
+const port = process.env.PORT || 8000;
+
 mongoose
   .connect(process.env.URI, {
     useNewUrlParser: true,
@@ -29,8 +32,6 @@ mongoose
     console.log(err);
   });
 
-//server listening------------------------------------------------->
-const port = process.env.PORT || 8000;
 
 
 
