@@ -5,33 +5,11 @@ const Schema=new mongoose.Schema({
         type:String,
         enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
     },
-    name:{
-        type:String
+    link: {type:String},
+    year:{
+      type:String,
     },
-    email:{
-        type:String
-    },
-    img:{
-        type:String
-    },
-    position:{
-        type:String
-    },
-    message:{
-        type:String
-    },
-    phone:{
-        type:String
-    },
-    vision:{
-        type:String
-    },
-    mission:{
-        type:String
-    },
-    QualityStatements:{
-        type:String
-    },
+    
     sourceOfInfo: {
         type: Object,
         default: {
@@ -47,4 +25,4 @@ const Schema=new mongoose.Schema({
     }
 },{timestamps:true})
 
-module.exports=mongoose.model("HOD",Schema);
+module.exports=mongoose.model("deptStudents",Schema);

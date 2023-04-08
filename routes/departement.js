@@ -2,12 +2,7 @@ const express = require("express");
 const authController = require("../controllers/authController");
 const resetController = require('../controllers/resetPassword');
 
-const {
-  getByDeptAcadcord,
-  updateAcadcord,
-  deleteAcadcord,
-  addAcadcord,
-} = require("../controllers/acadcord");
+
 const {
   getByDeptAchievement,
   addAchievement,
@@ -90,6 +85,12 @@ const {
 } = require("../controllers/programmes");
 const { getAllTimeTable } = require("../controllers/deptTimeTable");
 const { getAllSyllabus } = require("../controllers/deptSyllabus");
+const { getByDeptConsultancy, getAllConsultancy } = require("../controllers/deptConsultancy");
+const { getByDeptPublication } = require("../controllers/deptPublications");
+const { getByDeptProject } = require("../controllers/deptProjects");
+const { getByDeptClubs } = require("../controllers/deptClubs");
+const { getByDeptCoordinator } = require("../controllers/deptCoordinator");
+const { getByDeptDeptImages } = require("../controllers/deptImages");
 
 const Router = express.Router();
 
@@ -100,10 +101,8 @@ Router.post(
 Router.post("/:dept/logout",authController.deleteSession);
 // Router.get('/:dept/Faculty/:id', authController.checkAuthentication)
 
-Router.get("/:dept/Acadcord", getByDeptAcadcord);
-Router.post("/:dept/Acadcord", addAcadcord);
-Router.delete("/:dept/Acadcord/:id", deleteAcadcord);
-Router.put("/:dept/Acadcord/:id", updateAcadcord);
+Router.get("/:dept/Acadcord", getByDeptCoordinator);
+
 
 Router.get("/:dept/Faculty", getByDeptFaculty);
 Router.get("/:dept/Faculty/:id",authController.signInAuthentication,getByIdFaculty);
@@ -174,4 +173,9 @@ Router.post("/:dept/confirmation/submit/:token", resetController.modifyPassword)
 Router.get("/:dept/TimeTable",getAllTimeTable);
 Router.get("/:dept/Syllabus",getAllSyllabus);
 
+Router.get("/:dept/Consultancy",getByDeptConsultancy);
+Router.get("/:dept/Publications",getByDeptPublication);
+Router.get("/:dept/Projects",getByDeptProject);
+Router.get("/:dept/SocietyClubs",getByDeptClubs);
+Router.get("/:dept/Images",getByDeptDeptImages);
 module.exports = Router;

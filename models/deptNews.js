@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 //Schema---------------------------->
 const DeptNewsSchema = new mongoose.Schema(
   {
+    department: {
+      type: String,
+      enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
+    },
     title: { type: String, required: true },
     title2: { type: String, default: "" },
     desc: { type: String, default: "" },
@@ -35,9 +39,9 @@ const DeptNewsSchema = new mongoose.Schema(
       type: String,
       enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
     },
-    type:{
-      type:String,
-      enum:['Academics']
+    type: {
+      type: String,
+      enum: ['Academics']
     },
     show: { type: Boolean, default: true },
     updateLogs: {
