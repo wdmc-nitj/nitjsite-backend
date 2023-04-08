@@ -338,31 +338,6 @@ const AdminBroOptions = {
       }
     },
     {
-      resource: News, options: {
-        navigation: 'Home', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                console.log(query_fetched)
-                query_fetched['filters.sourceOfInfoDepartment'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
       resource: Achievements, options: {
         navigation: 'Home', actions: {
           edit: { isAccessible: canEditDept },
@@ -705,6 +680,7 @@ const AdminBroOptions = {
     { resource: Awards, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: InstituteProspectus, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: LatestEvent, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: News, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
 
     { resource: Notice, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Patent, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
