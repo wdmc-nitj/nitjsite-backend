@@ -39,6 +39,7 @@ const Schema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    showviewall:{type:Boolean,default:true},
   },
   {
     timestamps: true,
