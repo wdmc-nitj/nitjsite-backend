@@ -100,6 +100,10 @@ const fields = {
             type: String,
             default: ""
         },
+        newPage: {
+            type: Boolean,
+            default: false,
+        },
     }
 };
 
