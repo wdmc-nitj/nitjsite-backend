@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const env = require('../.env');
+// const env = require('../.env');
 
 const smtp = {
     service: 'gmail',
