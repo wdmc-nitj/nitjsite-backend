@@ -12,7 +12,7 @@ const Schema=new mongoose.Schema({
     img: {type:String},
     type:{
       type:String,
-      enum:["Club","Coordinator","Team"]
+      enum:["Club","Coordinator","Team","Societies"]
     },
     show: { type: Boolean, default: true },
     sourceOfInfo: {
