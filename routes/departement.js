@@ -1,6 +1,7 @@
 const express = require("express");
 const authController = require("../controllers/authController");
 const resetController = require('../controllers/resetPassword');
+const latestNewsController = require("../controllers/deptNews");
 
 
 const {
@@ -178,4 +179,9 @@ Router.get("/:dept/Publications",getByDeptPublication);
 Router.get("/:dept/Projects",getByDeptProject);
 Router.get("/:dept/SocietyClubs",getByDeptClubs);
 Router.get("/:dept/Images",getByDeptDeptImages);
+
+
+Router.route("/:dept/news").get(latestNewsController.getNews);
+Router.route("/:dept/all").get(latestNewsController.getAllNews);
+
 module.exports = Router;

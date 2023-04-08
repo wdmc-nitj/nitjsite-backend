@@ -1,4 +1,4 @@
-const LatestNews = require("../models/news");
+const LatestNews = require("../models/deptNews");
 //----------------------------------->
 
 //----------------------------------------------------------------------->
@@ -37,8 +37,7 @@ exports.getNews = async (req, res) => {
             .then((news) => res.status(200).send(news))
             .catch((err) => res.status(400).send("Error: " + err));
     } else {
-        
-        LatestNews.find({ show: true })
+        LatestNews.find({ show: true, sourceOfInfoDepartment: req.params.dept })
             .then((news) => {res.status(200).send(news)})
             .catch((err) => res.status(400).send("Error: " + err));
     }
