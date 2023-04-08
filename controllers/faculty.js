@@ -3,7 +3,7 @@ const Sessions = require('../models/Session');
 
 const getAllFaculty = async (req, res) => {
     try {
-        const result = await Faculty.find({ show: true },).sort({order:1});
+        const result = await Faculty.find({ show: true },).sort({order:1}).select("-password");
         console.log(result);
         res.status(200).json(result);
     } catch (error) {
@@ -13,7 +13,7 @@ const getAllFaculty = async (req, res) => {
 
 const getByIdFaculty = async (req, res) => {
     try {
-        const result = await Faculty.find({ _id: req.params.id });
+        const result = await Faculty.find({ _id: req.params.id }).select("-password");
         res.status(200).json({ data: result, validation: {status:req.user} });
     } catch (error) {
         res.status(400).json("Error: " + error);
@@ -22,7 +22,7 @@ const getByIdFaculty = async (req, res) => {
 
 const getByDeptFaculty = async (req, res) => {
     try {
-        const result = await Faculty.find({ show: true, department: req.params.dept }).sort({order:1});
+        const result = await Faculty.find({ show: true, department: req.params.dept }).sort({order:1}).select("-password");
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);
@@ -34,7 +34,7 @@ const addFaculty = async (req, res) => {
 
     try {
         const result = await faculty.save();
-        res.status(201).json(result)
+        res.status(201).json("Successfully inserted")
     } catch (error) {
         res.status(400).json("Error: " + error);
 

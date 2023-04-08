@@ -19,7 +19,7 @@ const validateID = (id) => {
 };
 
 // logUpdates
-const regexForUpdateLogs = '/^(findOneAnd|findOneAndUpdate|insertOne|updateOne|updateMany|deleteOne|deleteMany)/';
+const regexForUpdateLogs = '/^findOneAnd/';
 async function logUpdates(next) {
     // Check updated fields
     const updatedFields = Object.keys(this._update["$set"]);
@@ -88,6 +88,23 @@ const commonFieldsForAll = {
         type: Date,
         default: null
     },
+    updateLogs: {
+        type: Array,
+        default: []
+    },
+};
+
+const fields = {
+    webURL: {
+        link: {
+            type: String,
+            default: ""
+        },
+        newPage: {
+            type: Boolean,
+            default: false,
+        },
+    }
 };
 
 // exports these functions to be used in other files
@@ -96,5 +113,6 @@ module.exports = {
     validateID,
     commonFieldsForAll,
     logUpdates,
-    regexForUpdateLogs
+    regexForUpdateLogs,
+    fields
 };
