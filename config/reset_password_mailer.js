@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const env = require('../.env');
 
 const smtp = {
     service: 'gmail',
@@ -6,8 +7,8 @@ const smtp = {
     port: 587,
     secure: 'false',
     auth: {
-        user: '',
-        pass: ''
+        user: 'adityag.it.21@nitj.ac.in',
+        pass: 'rekmlukexcjapxua'
     }
 };
 
