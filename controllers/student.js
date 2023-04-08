@@ -1,4 +1,4 @@
-const Student= require('../models/Student')
+const Student= require('../models/deptStudents')
 
 const getAllStudent=async(req,res)=>{
 
@@ -21,7 +21,10 @@ const getByIdStudent=async(req,res)=>{
 
 const getByDeptStudent=async(req,res)=>{
     try {
-        const result=await Student.find({show:true,department:req.params.dept});
+        const q = req.query?.q;
+        let query = {department:req.params.dept,year: q?q.toString():"0"};
+        const result=await Student.findOne({show:true,...query});
+        console.log(result);
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);

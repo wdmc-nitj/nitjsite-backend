@@ -2,24 +2,25 @@ const mongoose = require("mongoose");
 //----------------------------------->
 
 //Schema---------------------------->
-const PublicationSchema = new mongoose.Schema(
+const ProjectSchema = new mongoose.Schema(
   {
 
-    "DOCUMENT TITLE": {
+    "SR NO": {
       type: String
     },
-    "AUTHORS": {
+    "PROJECT TITLE": {
       type: String
     },
-    "YEAR": {
+    "YEAR OF SANCTION": {
       type: String
     },
-    "SOURCE": {
+    "FUNDING AGENCY": {
       type: String
     },
-    "STATUS": {
+    "SANCTION AMOUNT RS IN LAC": {
       type: String
     },
+
     department: {
       type: String,
       enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
@@ -43,10 +44,8 @@ const PublicationSchema = new mongoose.Schema(
 );
 
 //Model---------------------------->
-const Model = mongoose.model("deptPublication", PublicationSchema);
+const Model = mongoose.model("deptProjects", ProjectSchema);
 
 //Export----------------------------->
 module.exports = Model;
 
-// object: {'Name of the Publication authority':value,'Publication Value':value}.
-// proceed same s about us
