@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates, fields } = require('../../utils');
 const Schema = mongoose.Schema;
 
 
@@ -13,39 +13,27 @@ const stringValidator = {
 
 const citedResearchSchema = new Schema(Object.assign({
     document: {     // pair of document name and link to document
-        type: {
+        type: Object.assign({
             name: {
                 type: String,
                 required: true,
                 notEmpty: true,
                 validate: stringValidator
             },
-            link: {
-                type: String,
-                required: true,
-                notEmpty: true,
-                validate: stringValidator
-            }
-        },
+        }, fields.webURL),
         required: true,
         notEmpty: true,
     },
     authors: {  // authors of the research
         // pair of author name and link to author's profile
-        type: [{
+        type: [Object.assign({
             name: {
                 type: String,
                 required: true,
                 notEmpty: true,
                 validate: stringValidator
             },
-            link: {
-                type: String,
-                required: true,
-                notEmpty: true,
-                validate: stringValidator
-            }
-        }],
+        }, fields.webURL)],
         required: true,
         notEmpty: true
     },
@@ -62,26 +50,20 @@ const citedResearchSchema = new Schema(Object.assign({
     },
     source: {   // source of the research
         // pair of source name and link to source
-        type: {
+        type: Object.assign({
             name: {
                 type: String,
                 required: true,
                 notEmpty: true,
                 validate: stringValidator
             },
-            link: {
-                type: String,
-                required: true,
-                notEmpty: true,
-                validate: stringValidator
-            }
-        },
+        }, fields.webURL),
         required: true,
         notEmpty: true
     },
     cites: { // number of citations
         // pair of number of citations and link to citations
-        type: {
+        type: Object.assign({
             number: {
                 type: Number,
                 required: true,
@@ -95,13 +77,7 @@ const citedResearchSchema = new Schema(Object.assign({
                     message: props => `${props.value} is not a valid number of citations! Please enter a positive number.`
                 }
             },
-            link: {
-                type: String,
-                required: true,
-                notEmpty: true,
-                validate: stringValidator
-            }
-        },
+        }, fields.webURL),
         required: true,
         notEmpty: true
     },
@@ -114,19 +90,14 @@ const refereedResearchSchema = new Schema(Object.assign({
         notEmpty: true,
         validate: stringValidator
     },
-    link: {     // link to the research
-        type: String,
-        required: true,
-        notEmpty: true,
-        validate: stringValidator
-    },
-}, commonFieldsForAll), { timestamps: true });
+}, fields.webURL, commonFieldsForAll), { timestamps: true });
 
 citedResearchSchema.pre(regexForUpdateLogs, logUpdates);
 refereedResearchSchema.pre(regexForUpdateLogs, logUpdates);
 
 const CitedResearch = mongoose.model('CitedResearch', citedResearchSchema);
 const RefereedResearch = mongoose.model('RefereedResearch', refereedResearchSchema);
+
 
 module.exports = {
     CitedResearch,

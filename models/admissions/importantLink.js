@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { commonFieldsForAll, regexForUpdateLogs, logUpdates } = require('../../utils');
+const { commonFieldsForAll, regexForUpdateLogs, logUpdates, fields } = require('../../utils');
 
 const linkSchema = new Schema(Object.assign({
     title: {
@@ -8,17 +8,7 @@ const linkSchema = new Schema(Object.assign({
         required: true,
         notEmpty: true
     },
-    link: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(v);
-            },
-            message: props => `${props.value} is not a valid URL!`
-        }
-    },
-}, commonFieldsForAll), { timestamps: true });
+}, fields.webURL, commonFieldsForAll), { timestamps: true });
 
 linkSchema.pre(regexForUpdateLogs, logUpdates);
 
