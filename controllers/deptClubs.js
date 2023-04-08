@@ -21,9 +21,16 @@ const getByIdClubs = async (req, res) => {
 
 const getByDeptClubs = async (req, res) => {
     try {
-        const result = await Clubs.find({ show: true, department: req.params.dept });
+        const q = req.query.q;
+
+        let query = {department: req.params.dept};
+        if(q){
+            query= {...query,type:q};
+        }
+        const result = await Clubs.find({ show: true, ...query});
         res.status(200).json(result);
     } catch (error) {
+
         res.status(400).json("Error: " + error);
     }
 }

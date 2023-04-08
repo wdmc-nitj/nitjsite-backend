@@ -21,8 +21,7 @@ const getByIdDeptImages = async (req, res) => {
 
 const getByDeptDeptImages = async (req, res) => {
     try {
-        const result = await Images.find({ show: true, department: req.params.dept });
-        console.log(result);
+        const result = await Images.findOne({ show: true, department: req.params.dept });
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);
