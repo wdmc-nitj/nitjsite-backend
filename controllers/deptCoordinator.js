@@ -13,7 +13,7 @@ const getAllCoordinator = async (req, res) => {
 const getByIdCoordinator = async (req, res) => {
     try {
         const result = await Coordinator.find({ _id: req.params.id });
-        res.status(200).json({ data: result, validation: {status:req.user} });
+        res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);
     }

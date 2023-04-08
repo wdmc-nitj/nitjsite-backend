@@ -82,6 +82,7 @@ const { getByDeptPublication } = require("../controllers/deptPublications");
 const { getByDeptProject } = require("../controllers/deptProjects");
 const { getByDeptClubs } = require("../controllers/deptClubs");
 const { getByDeptCoordinator } = require("../controllers/deptCoordinator");
+const { getByDeptDeptImages } = require("../controllers/deptImages");
 
 const Router = express.Router();
 
@@ -160,4 +161,5 @@ Router.get("/:dept/Consultancy",getByDeptConsultancy);
 Router.get("/:dept/Publications",getByDeptPublication);
 Router.get("/:dept/Projects",getByDeptProject);
 Router.get("/:dept/SocietyClubs",getByDeptClubs);
+Router.get("/:dept/Images",getByDeptDeptImages);
 module.exports = Router;

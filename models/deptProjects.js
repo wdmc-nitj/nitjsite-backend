@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const ProjectSchema = new mongoose.Schema(
   {
 
-    "SR. NO": {
+    "SR NO": {
       type: String
     },
     "PROJECT TITLE": {
@@ -17,7 +17,7 @@ const ProjectSchema = new mongoose.Schema(
     "FUNDING AGENCY": {
       type: String
     },
-    "SANCTION AMOUNT RS. IN LAC": {
+    "SANCTION AMOUNT RS IN LAC": {
       type: String
     },
 

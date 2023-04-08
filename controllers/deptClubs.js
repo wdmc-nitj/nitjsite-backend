@@ -13,7 +13,7 @@ const getAllClubs = async (req, res) => {
 const getByIdClubs = async (req, res) => {
     try {
         const result = await Clubs.find({ _id: req.params.id });
-        res.status(200).json({ data: result, validation: {status:req.user} });
+        res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);
     }
