@@ -5,17 +5,13 @@ const Schema=new mongoose.Schema({
         type:String,
         enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
     },
-    name:{
-      type:String
-    },
     title: {type:String},
     img: {type:String},
     type:{
       type:String,
-      enum:["Club","Coordinator","Team","Societies"]
+      enum:["Club","Coordinator","Team"]
     },
-    description: { type: String, default: "" },
-    show: { type: Boolean, default: true },
+    
     sourceOfInfo: {
         type: Object,
         default: {
@@ -24,7 +20,11 @@ const Schema=new mongoose.Schema({
           designation: null,
           department: null,
         }
-      }
+      },
+    show: { type: Boolean, default: true },
+    order:{
+        type: Number,
+    }
 },{timestamps:true})
 
 module.exports=mongoose.model("departmentClubs",Schema);
