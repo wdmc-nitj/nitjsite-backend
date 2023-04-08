@@ -94,11 +94,21 @@ const commonFieldsForAll = {
     },
 };
 
+const fields = {
+    webURL: {
+        link: {
+            type: String,
+            default: ""
+        },
+    }
+};
+
 // exports these functions to be used in other files
 module.exports = {
     sendError,
     validateID,
     commonFieldsForAll,
     logUpdates,
-    regexForUpdateLogs
+    regexForUpdateLogs,
+    fields
 };
