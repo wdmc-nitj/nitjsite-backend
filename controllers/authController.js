@@ -14,8 +14,6 @@ module.exports.signInAuthentication = async function (req, res, next) {
       const sessionID = cookie.session;
 
       let session = await Sessions.findById(sessionID);
-      console.log(session, sessionID);
-
 
       if (session) {
         if (session.user_id == id) {
@@ -54,12 +52,13 @@ module.exports.createSession = async function (req, res) {
     if (User.length == 0) {
       return res.redirect(`http://localhost:3000/dept/${dept}/login/failed`);
     } else {
-      const hash = await bcrypt.hash(req.body.password, 10);
+      const hash = User[0]?.password;
       bcrypt.compare(req.body.password, hash, async function (err, result) {
         if (result) {
           const session = await Sessions.create({
             user_id: User[0]?._id,
           });
+          
           session.save((err, id) => {
             return res
               .cookie("session", id._id, {
@@ -71,7 +70,7 @@ module.exports.createSession = async function (req, res) {
           });
         } else {
           return res.redirect(
-            `http://localhost:3000/dept/${dept}/login/incorrect-password`
+            `http://localhost:3000/dept/${dept}/login/failed`
           );
         }
       });
