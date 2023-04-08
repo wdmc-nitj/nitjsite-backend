@@ -2,7 +2,7 @@ const Programmes = require('../models/deptProgrammes');
 
 const getAllProgrammes=async(req,res)=>{
     try {
-        const result=await Programmes.find({show:true});
+        const result=await Programmes.find({department:req.params.dept});
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json("Error: " + error);

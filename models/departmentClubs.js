@@ -14,7 +14,7 @@ const Schema=new mongoose.Schema({
       type:String,
       enum:["Club","Coordinator","Team"]
     },
-    
+    show: { type: Boolean, default: true },
     sourceOfInfo: {
         type: Object,
         default: {
