@@ -8,23 +8,23 @@ const PublicationSchema = new mongoose.Schema(
     "DOCUMENT TITLE": {
       type: String
     },
-    "Authors": {
+    "AUTHORS": {
       type: String
     },
-    "Source": {
+    "YEAR": {
       type: String
     },
-    "Status": {
+    "SOURCE": {
       type: String
     },
-    "Year": {
+    "STATUS": {
       type: String
     },
-
     department: {
       type: String,
       enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
     },
+    show: { type: Boolean, default: true },
     order: {
       type: Number,
     },
