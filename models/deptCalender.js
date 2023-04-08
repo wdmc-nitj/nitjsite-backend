@@ -16,10 +16,6 @@ const Schema=new mongoose.Schema({
           department: null,
         }
       },
-    show: { type: Boolean, default: true },
-    order:{
-        type: Number,
-    }
 },{timestamps:true})
 
 module.exports=mongoose.model("deptCalender",Schema);
