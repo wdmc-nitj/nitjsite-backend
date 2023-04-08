@@ -2,13 +2,13 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const app = require("./app");
 
-process.on("unhandledRejection", (err) => {
-  console.log("unhandleed rejection occured");
-  console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
-  });
-});
+// process.on("unhandledRejection", (err) => {
+//   console.log("unhandleed rejection occured");
+//   console.log(err.name, err.message);
+//   server.close(() => {
+//     process.exit(1);
+//   });
+// });
 
 
 
@@ -17,22 +17,23 @@ dotenv.config({ path: "./.env" });
 
 mongoose.set('strictQuery', false);
 
+//server listening------------------------------------------------->
+const port = process.env.PORT || 8000;
+
 mongoose
   .connect(process.env.URI, {
     useNewUrlParser: true,
   })
   .then(() => {
     console.log("connection to database eshtablished");
+    app.listen(port, () => {
+      console.log(`Server started on port ${port}`);
+    });
   })
   .catch((err) => {
     console.log(err);
   });
 
-//server listening------------------------------------------------->
-const port = process.env.PORT || 8000;
-const server = app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
-});
 
 
 
