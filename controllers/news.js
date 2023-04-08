@@ -1,4 +1,4 @@
-const LatestNews = require("../models/news");
+const LatestNews = require("../models/deptNews");
 //----------------------------------->
 
 //----------------------------------------------------------------------->
@@ -11,10 +11,10 @@ exports.addNews = async (req, res) => {
         title: req.body?.title,
         desc: req.body?.desc,
         sourceOfInfo: {
-            name: req.body?.sourceOfInfo?.name,
-            email: req.body?.sourceOfInfo?.email,
-            designation: req.body?.sourceOfInfo?.designation,
-            department: req.body?.sourceOfInfo?.department,
+            name: req.body?.sourceOfInfoName,
+            email: req.body?.sourceOfInfoEmail,
+            designation: req.body?.sourceOfInfoDesignation,
+            department: req.body?.sourceOfInfoDepartment,
         },
         order: req.body?.order,
         new: req.body?.new,
@@ -33,13 +33,13 @@ exports.getNews = async (req, res) => {
             .catch((err) => res.status(400).send("Error: " + err));
     } else if (req.query.title !== undefined) {
         const title = req.query.title.split("-").join(" ");
-        console.log(title);
         return LatestNews.find({ title: title })
             .then((news) => res.status(200).send(news))
             .catch((err) => res.status(400).send("Error: " + err));
     } else {
+        
         LatestNews.find({ show: true })
-            .then((news) => res.status(200).send(news))
+            .then((news) => {res.status(200).send(news)})
             .catch((err) => res.status(400).send("Error: " + err));
     }
 };

@@ -77,6 +77,14 @@ const {
   updateAwards,
   deleteAwards,
 } = require("../controllers/awardsAndHonors");
+const {
+  addProgrammes,
+  deleteProgrammes,
+  getAllProgrammes,
+  updateProgrammes,
+} = require("../controllers/programmes");
+const { getAllTimeTable } = require("../controllers/deptTimeTable");
+const { getAllSyllabus } = require("../controllers/deptSyllabus");
 const { getByDeptConsultancy, getAllConsultancy } = require("../controllers/deptConsultancy");
 const { getByDeptPublication } = require("../controllers/deptPublications");
 const { getByDeptProject } = require("../controllers/deptProjects");
@@ -153,9 +161,17 @@ Router.post("/:dept/awardsAndHonors", addAwards);
 Router.put("/:dept/awardsAndHonors/:id", updateAwards);
 Router.delete("/:dept/awardsAndHonors/:id", deleteAwards);
 
+Router.get("/:dept/programmes", getAllProgrammes);
+Router.post("/:dept/programmes", addProgrammes);
+Router.put("/:dept/programmes/:id", updateProgrammes);
+Router.delete("/:dept/programmes/:id", deleteProgrammes);
+
 Router.post("/:dept/confirmation", resetController.resetEmailHandler);
 Router.get("/:dept/confirmation/:token", resetController.checkToken);
 Router.post("/:dept/confirmation/submit/:token", resetController.modifyPassword);
+
+Router.get("/:dept/TimeTable",getAllTimeTable);
+Router.get("/:dept/Syllabus",getAllSyllabus);
 
 Router.get("/:dept/Consultancy",getByDeptConsultancy);
 Router.get("/:dept/Publications",getByDeptPublication);
