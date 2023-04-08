@@ -7,8 +7,8 @@ const smtp = {
     port: 587,
     secure: 'false',
     auth: {
-        user: '',
-        pass: ''
+        user: 'adityag.it.21@nitj.ac.in',
+        pass: 'rekmlukexcjapxua'
     }
 };
 
