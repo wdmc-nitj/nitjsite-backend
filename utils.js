@@ -88,6 +88,10 @@ const commonFieldsForAll = {
         type: Date,
         default: null
     },
+    updateLogs: {
+        type: Array,
+        default: []
+    },
 };
 
 // exports these functions to be used in other files
