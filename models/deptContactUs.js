@@ -21,10 +21,6 @@ const Schema = new mongoose.Schema({
             designation: null,
             department: null,
         }
-    },
-    show: { type: Boolean, default: true },
-    order: {
-        type: Number,
     }
 }, { timestamps: true })
 

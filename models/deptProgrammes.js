@@ -15,13 +15,6 @@ const DeptProgrammeSchema = new mongoose.Schema(
             type: String,
             enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf']
         },
-        show: { type: Boolean, default: true },
-        order: {
-            type: Number,
-        },
-        new: {
-            type: Boolean,
-        },
         sourceOfInfo: {
             type: Object,
             default: {
