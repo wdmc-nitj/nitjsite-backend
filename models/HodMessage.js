@@ -29,9 +29,6 @@ const Schema=new mongoose.Schema({
     mission:{
         type:String
     },
-    QualityStatements:{
-        type:String
-    },
     sourceOfInfo: {
         type: Object,
         default: {

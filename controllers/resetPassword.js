@@ -2,23 +2,22 @@ const Faculty = require("../models/Faculty");
 const nodemailer = require("../config/reset_password_mailer");
 const crypto = require("crypto");
 const ResetPassword = require("../models/ResetPassword");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
 module.exports.resetEmailHandler = async function (req, res) {
   try {
     const faculty = await Faculty.find({ email: req.body.email });
     const dept = req.params.dept;
 
-
     if (faculty[0]?._id) {
       const token = crypto.randomBytes(20).toString("hex");
+
 
       const resetToken = await ResetPassword.create({
         user_id: faculty[0]?._id,
         token_id: token,
         createdOn: Date.now(),
       });
-      
 
       await nodemailer.sendMail(
         {
@@ -42,16 +41,12 @@ module.exports.resetEmailHandler = async function (req, res) {
               "http://localhost:3000/dept/cse/onClickForgotPass/failure"
             );
           }
-
-          return res.redirect(
-            "http://localhost:3000/dept/cse/onClickForgotPass/success"
-          );
         }
       );
     }
-    else
+
     return res.redirect(
-      "http://localhost:3000/dept/cse/onClickForgotPass/failure/"
+      "http://localhost:3000/dept/cse/onClickForgotPass/success"
     );
   } catch (err) {
     console.log(err);
@@ -63,10 +58,7 @@ module.exports.checkToken = async function (req, res) {
   const resetPasswordToken = await ResetPassword.find({ token_id: token });
   let isValid = false;
 
-  if (
-    Date.now() - resetPasswordToken[0]?.createdOn.getTime() <
-    15*60*60*100
-  ) {
+  if (Date.now() - resetPasswordToken[0]?.createdOn.getTime() < 90909309340300) {
     isValid = true;
   }
 
@@ -88,22 +80,16 @@ module.exports.modifyPassword = async function (req, res) {
   const dept = req.params.dept;
   const resetPasswordToken = await ResetPassword.find({ token_id: token });
   const id = resetPasswordToken[0]?.user_id;
-
+  
   if (resetPasswordToken) {
     if (req.body.password == req.body.repassword) {
-      if (req.body.password) {
-        let password = await bcrypt.hash(req.body.password, 10);
-        console.log(password);
-        await Faculty.findByIdAndUpdate(resetPasswordToken[0]?.user_id, {
-          $set: { password: password },
-        });
-        await ResetPassword.deleteMany({
-          user_id: resetPasswordToken[0]?.user_id,
-        });
-        return res
-          .status(200)
-          .redirect(`http://localhost:3000/dept/${dept}/faculty/${id}`);
-      }
+        if(req.body.password){
+            let password = await bcrypt.hash(req.body.password,10);
+            console.log(password);
+            await Faculty.findByIdAndUpdate(resetPasswordToken[0]?.user_id, {$set: {"password": password}});
+            await ResetPassword.deleteMany({user_id: resetPasswordToken[0]?.user_id});
+            return res.status(200).redirect(`http://localhost:3000/dept/${dept}/faculty/${id}`);
+        }
     }
     return res.status(200).redirect(`http://localhost:3000/${dept}/facult`);
   }
