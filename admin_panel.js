@@ -64,6 +64,7 @@ const Events = require("./models/research/events");
 const MoUs = require("./models/research/MoUs");
 const researchPublications = require("./models/research/researchPublications");
 const sponsoredProjects = require("./models/research/sponsoredProjects");
+const IPRs = require("./models/research/IPRs");
 
 const RecruitmentUpdates = require("./models/recruitmentUpdates");
 const addmissionHelpline = require("./models/admissions/admissionHelpline");
@@ -662,6 +663,7 @@ const AdminBroOptions = {
     { resource: researchPublications.CitedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
     { resource: researchPublications.RefereedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
     { resource: sponsoredProjects, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: IPRs, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
 
     { resource: RecruitmentUpdates, options: { navigation: 'Jobs', actions: { list: { isAccessible: isAdmin } } } },
 
