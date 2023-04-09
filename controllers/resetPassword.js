@@ -26,10 +26,6 @@ module.exports.resetEmailHandler = async function (req, res) {
           to: req.body.email,
           subject: "Reset your Password",
           html: `<div>
-                <button class="rounded-xl p-2 hover:bg-red-400 bg-red-200"><a href="http://localhost:3000/dept/confirmation/${token}">Reset your password</a></button>
-            
-                <p>If the above button does not work, please copy this link and open in your browser :</p>
-            
                 <h1>
                     <a href="http://localhost:3000/dept/${dept}/confirmation/${token}">http://localhost:3000/dept/${dept}/confirmation/${token}</a>
                 </h1>
