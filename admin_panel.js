@@ -16,7 +16,7 @@ const DeptClub = require("./models/departmentClubs");
 const DeptPub = require("./models/deptPublication");
 const DeptCalender = require("./models/deptCalender");
 const DeptConsultancy = require("./models/deptConsultancy");
-const DeptCoordinators= require("./models/deptCoordinators");
+const DeptCoordinators = require("./models/deptCoordinators");
 const DeptNews = require("./models/deptNews");
 const DeptProgrammes = require("./models/deptProgrammes");
 const DeptProjects = require("./models/deptProjects");
@@ -68,10 +68,10 @@ const IPRs = require("./models/research/IPRs");
 
 const RecruitmentUpdates = require("./models/recruitmentUpdates");
 const addmissionHelpline = require("./models/admissions/admissionHelpline");
-const addmissionUpdate= require("./models/admissions/admissionUpdate");
-const importantLink=require("./models/admissions/importantLink");
+const addmissionUpdate = require("./models/admissions/admissionUpdate");
+const importantLink = require("./models/admissions/importantLink");
 
-const newpage=require('./models/newpage');
+const newpage = require('./models/newpage');
 
 
 const User = require("./models/AdminBroUser");
@@ -85,6 +85,9 @@ const canEditDept = ({ currentAdmin, record }) => {
   if (currentAdmin.role === 'admin') {
     return true;
   }
+  if (!currentAdmin.role) {
+    return false;
+  }
   if (!record) {
     return true
   }
@@ -92,6 +95,21 @@ const canEditDept = ({ currentAdmin, record }) => {
     return currentAdmin.department == record.param('department')
   }
 }
+const canEditprofile = ({ currentAdmin, record }) => {
+  if (currentAdmin.role === 'admin') {
+    return true;
+  }
+  
+  if (!record) {
+    return true
+  }
+  if (record) {
+    console.log("hello3")
+    console.log(currentAdmin._id, record.param('_id'))
+    return currentAdmin._id === record.param('_id')
+  }
+}
+
 
 AdminBro.registerAdapter(AdminBroMongoose);
 const AdminBroOptions = {
@@ -196,30 +214,6 @@ const AdminBroOptions = {
     },
     {
       resource: Placement, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: Acadcord, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: canEditDept },
@@ -671,10 +665,80 @@ const AdminBroOptions = {
     { resource: Navbar, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Footer, options: { navigation: 'Website', actions: { list: { isAccessible: isAdmin } } } },
 
-  
+
     { resource: Clubs, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: About, options: { navigation: 'About', actions: { list: { isAccessible: isAdmin } } } },
-    { resource: Faculty, options: { navigation: 'Faculty', actions: { list: { isAccessible: isAdmin } } } },
+    {
+      resource: Faculty, options: {
+        navigation: 'Faculty', actions: {
+          list: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'admin') {
+                return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
+              }
+              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+            },
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role!='admin') {     // to filter by department
+                query_fetched['filters.email'] = currentAdmin.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditprofile
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'admin') {
+                return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
+              }
+              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+            },
+            isAccessible: canEditprofile
+          },
+          delete: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'admin') {
+                return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
+              }
+              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+            },
+            isAccessible: isAdmin
+          },
+          bulkDelete: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'admin') {
+                return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
+              }
+              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+            },
+            isAccessible: isAdmin
+          },
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'admin') {
+                return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
+              }
+              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+            },
+            isAccessible: canEditprofile,
+          },
+          new: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'admin') {
+                return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
+              }
+              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+            },
+            isAccessible: isAdmin,
+          }
+        }
+      }
+    },
     { resource: AcademicCalendar, options: { navigation: 'Academics', actions: { list: { isAccessible: isAdmin } } } },
     { resource: AcademicNotices, options: { navigation: 'Academics', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Administration, options: { navigation: 'Administration', actions: { list: { isAccessible: isAdmin } } } },
@@ -706,7 +770,7 @@ const AdminBroOptions = {
 
     { resource: Publication, options: { navigation: 'Home', actions: { list: { isAccessible: isAdmin } } } },
     { resource: newpage, options: { navigation: 'New Page', actions: { list: { isAccessible: isAdmin } } } },
-    
+
     {
       resource: User,
       options: {
@@ -739,10 +803,20 @@ const admin_panel = new AdminBro(AdminBroOptions);
 const router = AdminBroExpressjs.buildAuthenticatedRouter(admin_panel, {
   authenticate: async (email, password) => {
     const user = await User.findOne({ email })
+    const faculty = await Faculty.findOne({ email })
+    console.log(user)
+    console.log(faculty)
     if (user) {
       const matched = password == user.password
       if (matched) {
         return user
+      }
+    }
+    else if (faculty) {
+      const matched = password == faculty.password
+      console.log(password, faculty.password)
+      if (matched) {
+        return faculty
       }
     }
     return false
