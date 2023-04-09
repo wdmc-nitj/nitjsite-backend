@@ -3,13 +3,14 @@ const nodemailer = require("../config/reset_password_mailer");
 const crypto = require("crypto");
 const ResetPassword = require("../models/ResetPassword");
 const bcrypt = require("bcrypt");
-
+const dotenv = require("dotenv");
+dotenv.config({ path: "./.env" });
+url=process.env.DEPT_URL
 module.exports.resetEmailHandler = async function (req, res) {
   try {
     const faculty = await Faculty.find({ email: req.body.email });
     const dept = req.params.dept;
-    url="http://nitjintranet.ac.in:8081"
-    // url="http://localhost:3000"
+    // url="http://nitjintranet.ac.in:8081"
 
     if (faculty[0]?._id) {
       const token = crypto.randomBytes(20).toString("hex");
@@ -28,7 +29,9 @@ module.exports.resetEmailHandler = async function (req, res) {
           subject: "Reset your Password",
           html: `<div>
                 <h1>
-                    <a href="${url}/dept/${dept}/confirmation/${token}">http://localhost:3000/dept/${dept}/confirmation/${token}</a>
+                    <a href="${url}/dept/${dept}/confirmation/${token}">
+                    "${url}/dept/${dept}/confirmation/${token}"
+                    </a>
                 </h1>
             </div>`,
         },
@@ -36,12 +39,12 @@ module.exports.resetEmailHandler = async function (req, res) {
           if (err) {
             console.log(err);
             return res.redirect(
-              url+"/dept/cse/onClickForgotPass/failure"
+              `${url}/dept/cse/onClickForgotPass/failure`
             );
           }
 
           return res.redirect(
-            url+"/dept/cse/onClickForgotPass/success"
+            `${url}/dept/cse/onClickForgotPass/success`
           );
         }
       );
@@ -102,6 +105,6 @@ module.exports.modifyPassword = async function (req, res) {
           .redirect(`http://localhost:3000/dept/${dept}/faculty/${id}`);
       }
     }
-    return res.status(200).redirect(`http://localhost:3000/${dept}/facult`);
+    return res.status(200).redirect(`http://localhost:3000/${dept}/faculty`);
   }
 };
