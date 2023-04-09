@@ -19,12 +19,57 @@ const Schema = new mongoose.Schema({
         type: String
     },
     education_qualification: {
-        type: Array,
+        type: [
+            {
+                "column": {
+                    type: String
+                },
+                "degree": {
+                    type: String
+                },
+                "field": {
+                    type: String
+                },
+                "clg": {
+                    type: String
+                },
+                "year": {
+                    type: String
+                },
+            }
+        ],
         default: []
     },
     address: {
-        type: Object,
-        default: {}
+        type: [
+            {
+                "address1": {
+                    type: String
+                },
+                "address2": {
+                    type: String
+                },
+                "city": {
+                    type: String
+                },
+                "state": {
+                    type: String
+                },
+                "pin": {
+                    type: String
+                },
+                "eid": {
+                    type: String
+                },
+                "phone": {
+                    type: String
+                },
+                "fax": {
+                    type: String
+                },
+            }
+        ],
+        default: []
     },
     gender: {
         type: String,

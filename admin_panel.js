@@ -696,7 +696,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality','education_qualification', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: canEditprofile
           },
@@ -705,7 +705,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality', 'education_qualification', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: isAdmin
           },
@@ -714,7 +714,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality', 'education_qualification','book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: isAdmin
           },
@@ -723,7 +723,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality', 'education_qualification', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: canEditprofile,
           },
@@ -732,7 +732,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality' ,'education_qualification',, 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: isAdmin,
           }
