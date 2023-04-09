@@ -2,6 +2,8 @@ const AdminBro = require("admin-bro");
 const AdminBroMongoose = require("@admin-bro/mongoose");
 const AdminBroExpressjs = require('admin-bro-expressjs')
 
+const bcrypt = require("bcrypt");
+
 const Faculty = require("./models/Faculty");
 const Acadcord = require("./models/Acadcord");
 const Activity = require("./models/Activity");
@@ -813,11 +815,27 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(admin_panel, {
       }
     }
     else if (faculty) {
-      const matched = password == faculty.password
-      console.log(password, faculty.password)
-      if (matched) {
-        return faculty
+      var status = false;
+      await bcrypt.compare(password, faculty.password).then((value) => {
+        if(value){
+          status = true;
+        }
       }
+      );
+      // }),async function (err, result) {
+      //   // const matched = password == faculty.password
+
+      //   console.log(result, "result");
+
+      //   if (result) {
+          
+      //   }
+      // }).then(())
+      if(status){
+        return faculty;
+      }
+      console.log(password, faculty.password)
+      
     }
     return false
   },
