@@ -8,7 +8,8 @@ module.exports.resetEmailHandler = async function (req, res) {
   try {
     const faculty = await Faculty.find({ email: req.body.email });
     const dept = req.params.dept;
-
+    url="http://nitjintranet.ac.in:8081"
+    // url="http://localhost:3000"
 
     if (faculty[0]?._id) {
       const token = crypto.randomBytes(20).toString("hex");
@@ -27,7 +28,7 @@ module.exports.resetEmailHandler = async function (req, res) {
           subject: "Reset your Password",
           html: `<div>
                 <h1>
-                    <a href="http://localhost:3000/dept/${dept}/confirmation/${token}">http://localhost:3000/dept/${dept}/confirmation/${token}</a>
+                    <a href="${url}/dept/${dept}/confirmation/${token}">http://localhost:3000/dept/${dept}/confirmation/${token}</a>
                 </h1>
             </div>`,
         },
@@ -35,19 +36,19 @@ module.exports.resetEmailHandler = async function (req, res) {
           if (err) {
             console.log(err);
             return res.redirect(
-              "http://localhost:3000/dept/cse/onClickForgotPass/failure"
+              url+"/dept/cse/onClickForgotPass/failure"
             );
           }
 
           return res.redirect(
-            "http://localhost:3000/dept/cse/onClickForgotPass/success"
+            url+"/dept/cse/onClickForgotPass/success"
           );
         }
       );
     }
     else
     return res.redirect(
-      "http://localhost:3000/dept/cse/onClickForgotPass/failure/"
+      url+"/dept/cse/onClickForgotPass/failure/"
     );
   } catch (err) {
     console.log(err);
