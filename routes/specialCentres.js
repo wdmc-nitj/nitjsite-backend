@@ -11,8 +11,5 @@ Router.route('/get/all').get(specialCentres.getAllSpecialCentres);
 
 Router.route('/getcentre/:shortterm').get(specialCentres.getByDeptSpecialCentres);
 
-
-
-
 //Export----------------------------->
 module.exports = Router;

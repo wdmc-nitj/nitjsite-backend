@@ -42,6 +42,7 @@ const upload = require("./routes/upload");
 const admissionsRoutes = require('./routes/admissionsRoutes');
 const researchRoutes = require('./routes/researchRoutes');
 const recruitmentsRoutes = require('./routes/recruitmentRoutes');
+const curriculumRouter = require('./routes/curriculum');
 
 //initialize app
 const app = express();
@@ -98,7 +99,7 @@ app.use("/club", clubRouter);
 app.use("/upcomingEvent", upcomingEventRouter);
 app.use("/academicCalendar", academicCalendarRouter);
 app.use("/deptCalendar", deptCalendarRouter);
-
+app.use('/curriculum',curriculumRouter);
 app.use("/search", searchRouter);
 app.use("/dept", departmentRouter);
 app.use('/newpage',newpageRouter)
