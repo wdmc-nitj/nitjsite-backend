@@ -120,7 +120,7 @@ const AdminBroOptions = {
       resource: Staff, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -135,7 +135,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -144,7 +144,7 @@ const AdminBroOptions = {
       resource: Student, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -159,7 +159,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -168,7 +168,7 @@ const AdminBroOptions = {
       resource: HOD, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -183,7 +183,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -192,7 +192,7 @@ const AdminBroOptions = {
       resource: PhdScholar, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -207,7 +207,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -216,7 +216,7 @@ const AdminBroOptions = {
       resource: Placement, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -231,7 +231,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -240,7 +240,7 @@ const AdminBroOptions = {
       resource: Activity, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -255,7 +255,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -264,7 +264,7 @@ const AdminBroOptions = {
       resource: Infrastructure, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -279,7 +279,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -288,7 +288,7 @@ const AdminBroOptions = {
       resource: DeptClub, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -303,7 +303,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -312,7 +312,7 @@ const AdminBroOptions = {
       resource: DeptPub, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -327,7 +327,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -336,7 +336,7 @@ const AdminBroOptions = {
       resource: Achievements, options: {
         navigation: 'Home', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -351,7 +351,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -360,7 +360,7 @@ const AdminBroOptions = {
       resource: DeptCalender, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -375,7 +375,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -384,7 +384,7 @@ const AdminBroOptions = {
       resource: DeptConsultancy, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -399,7 +399,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -408,7 +408,7 @@ const AdminBroOptions = {
       resource: DeptNews, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -423,7 +423,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -432,7 +432,7 @@ const AdminBroOptions = {
       resource: DeptProgrammes, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -447,7 +447,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -456,7 +456,7 @@ const AdminBroOptions = {
       resource: DeptProjects, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -471,7 +471,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -480,7 +480,7 @@ const AdminBroOptions = {
       resource: DeptSyllabus, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -495,7 +495,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -504,7 +504,7 @@ const AdminBroOptions = {
       resource: DeptTimeTable, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -519,7 +519,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -528,7 +528,7 @@ const AdminBroOptions = {
       resource: DeptStudents, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -543,7 +543,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -552,7 +552,7 @@ const AdminBroOptions = {
       resource: DeptImages, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -567,7 +567,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -576,7 +576,7 @@ const AdminBroOptions = {
       resource: DeptCoordinators, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -591,7 +591,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -600,7 +600,7 @@ const AdminBroOptions = {
       resource: DeptContactUs, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -615,7 +615,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
@@ -624,7 +624,7 @@ const AdminBroOptions = {
       resource: DeptProgrammeInfo, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
-          delete: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
               const { currentAdmin } = context
@@ -639,7 +639,7 @@ const AdminBroOptions = {
             }, isAccessible: canEditDept
           },
           show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         }
       }
