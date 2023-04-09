@@ -26,7 +26,6 @@ const specialCentresRouter = require("./routes/specialCentres");
 const studentTeamRouter = require("./routes/studentTeam");
 const academicnoticesRouter = require("./routes/academicnotices");
 const studyProgramRouter = require("./routes/studyprog");
-const deptCalendarRouter = require("./routes/deptCalendar");
 const clubRouter = require("./routes/club");
 const upcomingEventRouter = require("./routes/upcomingEvent");
 const departmentRouter = require("./routes/departement");
@@ -97,7 +96,6 @@ app.use("/studentTeam", studentTeamRouter);
 app.use("/club", clubRouter);
 app.use("/upcomingEvent", upcomingEventRouter);
 app.use("/academicCalendar", academicCalendarRouter);
-app.use("/deptCalendar", deptCalendarRouter);
 
 app.use("/search", searchRouter);
 app.use("/dept", departmentRouter);
