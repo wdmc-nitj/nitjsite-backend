@@ -26,7 +26,6 @@ const specialCentresRouter = require("./routes/specialCentres");
 const studentTeamRouter = require("./routes/studentTeam");
 const academicnoticesRouter = require("./routes/academicnotices");
 const studyProgramRouter = require("./routes/studyprog");
-const deptCalendarRouter = require("./routes/deptCalendar");
 const clubRouter = require("./routes/club");
 const upcomingEventRouter = require("./routes/upcomingEvent");
 const departmentRouter = require("./routes/departement");

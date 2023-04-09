@@ -5,35 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload</title>
+    <style>
+      /* Style the form element */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+      }
+
+      /* Style the file input element */
+      input[type="file"] {
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      /* Style the submit button element */
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      /* Style the submit button element on hover */
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
   </head>
   <body>
-    <form action="#" id="upload" enctype="multipart/form-data">
-      <input type="file" name="image" />
+    <form
+      action="/upload"
+      method="post"
+      id="upload"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" />
       <input type="submit" value="Upload" />
     </form>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-    <script>
-      document
-        .getElementById("upload")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          let file = document.querySelector('input[type="file"]').files[0];
-
-          let formdata = new FormData();
-          formdata.append("file", file);
-
-          fetch("http://localhost:8000/upload", {
-            method: "POST",
-            body: formdata,
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-            .then((res) => res.json())
-            .then((data) => console.log(data));
-
-        });
-    </script>
   </body>
 </html>
