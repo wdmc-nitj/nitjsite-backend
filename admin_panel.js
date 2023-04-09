@@ -106,8 +106,6 @@ const canEditprofile = ({ currentAdmin, record }) => {
     return true
   }
   if (record) {
-    console.log("hello3")
-    console.log(currentAdmin._id, record.param('_id'))
     return currentAdmin._id === record.param('_id')
   }
 }
@@ -806,8 +804,6 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(admin_panel, {
   authenticate: async (email, password) => {
     const user = await User.findOne({ email })
     const faculty = await Faculty.findOne({ email })
-    console.log(user)
-    console.log(faculty)
     if (user) {
       const matched = password == user.password
       if (matched) {
@@ -822,19 +818,9 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(admin_panel, {
         }
       }
       );
-      // }),async function (err, result) {
-      //   // const matched = password == faculty.password
-
-      //   console.log(result, "result");
-
-      //   if (result) {
-          
-      //   }
-      // }).then(())
       if(status){
         return faculty;
       }
-      console.log(password, faculty.password)
       
     }
     return false
