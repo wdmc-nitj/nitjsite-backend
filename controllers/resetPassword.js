@@ -28,11 +28,9 @@ module.exports.resetEmailHandler = async function (req, res) {
           to: req.body.email,
           subject: "Reset your Password",
           html: `<div>
-                <h1>
                     <a href="${url}/dept/${dept}/confirmation/${token}">
                     "${url}/dept/${dept}/confirmation/${token}"
                     </a>
-                </h1>
             </div>`,
         },
         function (err, info) {
@@ -51,7 +49,7 @@ module.exports.resetEmailHandler = async function (req, res) {
     }
     else
     return res.redirect(
-      url+"/dept/cse/onClickForgotPass/failure/"
+      `${url}/dept/cse/onClickForgotPass/failure/`
     );
   } catch (err) {
     console.log(err);
@@ -102,9 +100,9 @@ module.exports.modifyPassword = async function (req, res) {
         });
         return res
           .status(200)
-          .redirect(`http://localhost:3000/dept/${dept}/faculty/${id}`);
+          .redirect(`${url}/dept/${dept}/faculty/${id}`);
       }
     }
-    return res.status(200).redirect(`http://localhost:3000/${dept}/faculty`);
+    return res.status(200).redirect(`${url}/${dept}/faculty`);
   }
 };
