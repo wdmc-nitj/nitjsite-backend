@@ -16,22 +16,14 @@
             <table class="min-w-full text-left text-sm font-light">
               <thead class="border-b font-medium dark:border-neutral-500">
                 <tr>
-            
                   <th scope="col" class="px-6 py-4">Title</th>
                   <th scope="col" class="px-6 py-4">Content</th>
-                  <th scope="col" class="px-6 py-4">Show</th>           <
+                  <th scope="col" class="px-6 py-4">Show</th>
+                  <th scope="col" class="px-6 py-4">Copy</th>
                 </tr>
               </thead>
               <tbody id="table"></tbody>
             </table>
-            <a href="/admin/newpage/add">
-              
-              <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5"
-              >
-                Add New Page
-              </button>
-            </a>
           </div>
         </div>
       </div>
@@ -41,7 +33,7 @@
       function showTable() {
         let table = document.getElementById("table");
         table.innerHTML = "";
-        let url = "https://wdmc-vsj1.onrender.com/newpage";
+        let url = "/newpage/get/all";
         fetch(url, {
           method: "GET",
           headers: {
@@ -50,31 +42,31 @@
         })
           .then((res) => {
             res.json().then((data) => {
+              console.log(data);
 
               for (let i = 0; i < data.length; i++) {
                 let d = data[i];
 
                 let tr = document.createElement("tr");
-                let td=document.createElement("td");
+                let td = document.createElement("td");
                 let td1 = document.createElement("td");
                 let td2 = document.createElement("td");
-                
+                let td3 = document.createElement("td");
 
                 td.className = "whitespace-nowrap px-6 py-4";
                 td1.className = "whitespace-nowrap px-6 py-4";
                 td2.className = "whitespace-nowrap px-6 py-4";
-               
-
-               
+                td3.className = "whitespace-nowrap px-6 py-4";
                 td.innerHTML = d.title;
                 td1.innerHTML = d.description;
-                td2.innerHTML = `<a href="/admin/newpage/edit/${d._id}">
+                td2.innerHTML = `<a href="/admin/store/edit/${d._id}">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded">Edit</button></a>`;
-                
+                td3.innerHTML = `<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded" onclick="copy('${d._id}')">Copy</button>`;
+
                 tr.appendChild(td);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
-                
+                tr.appendChild(td3);
 
                 tr.className = "border-b dark:border-neutral-500";
                 table.appendChild(tr);
@@ -86,11 +78,9 @@
           });
       }
 
-   
-
       function copy(id) {
         let copyText = `https://nitjmain.onrender.com/template/index.html?id=${id}?category=newpage`;
-        
+
         navigator.clipboard.writeText(copyText);
         alert("Copied the text: " + copyText);
       }

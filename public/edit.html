@@ -27,15 +27,12 @@
         >
           Save
         </button> -->
-    </form>
-    <a href="/admin/newpage">
-
-        <button
-          class="m-2 rounded-lg text-white bg-blue-700 w-36 h-10"
-        >
+      </form>
+      <a href="/admin/newpage">
+        <button class="m-2 rounded-lg text-white bg-blue-700 w-36 h-10">
           Back
         </button>
-    </a>
+      </a>
     </div>
   </body>
   <script>
@@ -46,7 +43,7 @@
       let url = window.location.href;
       let id = url.split("/").pop();
 
-      let u = `https://wdmc-vsj1.onrender.com/newpage/${id}`;
+      let u = `/newpage/${id}`;
 
       fetch(u, {
         method: "GET",
@@ -57,9 +54,8 @@
         .then((res) => {
           res.json().then((data) => {
             console.log(data);
-       
+
             CKEDITOR.instances.editor1.setData(data.description);
-            
           });
         })
         .catch((err) => {
@@ -79,7 +75,7 @@
       const id = document.getElementById("id").value;
 
       let url = `https://wdmc-vsj1.onrender.com/newpage/${id}`;
-    
+
       await fetch(url, {
         method: "PUT",
         headers: {
