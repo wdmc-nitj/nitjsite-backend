@@ -36,6 +36,9 @@ const Schema = new mongoose.Schema(
       type: String,
     },
     startDate:{type:Date},
+    date2:{type:Date},
+    desc:{type:String},
+    
     endDate:{type:Date},
     show: { type: Boolean, default: true },
   },
