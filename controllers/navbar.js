@@ -9,7 +9,7 @@ const obj = {
     "Cells",
     "Committees",
   ],
-  Acadmeics: [
+  Academics: [
     "Departments",
     "Centers",
     "Academic System",
@@ -184,7 +184,7 @@ exports.create = async (req, res) => {
           ["Cells", false],
           ["Committees", false],
         ],
-        Acadmeics: [
+        Academics: [
           ["Departments", false],
           ["Centers", false],
           ["Academic System", true],
