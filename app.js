@@ -46,7 +46,7 @@ const recruitmentsRoutes = require('./routes/recruitmentRoutes');
 const app = express();
 
 //admin panel
-app.use(admin_panel.options.rootPath, router);
+// app.use(admin_panel.options.rootPath, router);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));

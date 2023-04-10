@@ -20,13 +20,13 @@
         />
 
         <textarea name="editor1"></textarea>
-        <input type="hidden" name="show" id="show" value="" />
-        <input type="hidden" name="id" id="id" value="" />
-        <button
+        <!-- <input type="hidden" name="show" id="show" value="" />
+        <input type="hidden" name="id" id="id" value="" /> -->
+        <!-- <button
           class="m-2 rounded-lg text-white bg-blue-700 w-36 h-10"
         >
           Save
-        </button>
+        </button> -->
     </form>
     <a href="/admin/newpage">
 
@@ -57,10 +57,9 @@
         .then((res) => {
           res.json().then((data) => {
             console.log(data);
-            document.getElementById("title").value = data.title;
-            CKEDITOR.instances.editor1.setData(data.content);
-            document.getElementById("show").value = data.show;
-            document.getElementById("id").value = data._id;
+       
+            CKEDITOR.instances.editor1.setData(data.description);
+            
           });
         })
         .catch((err) => {
