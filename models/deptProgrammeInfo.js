@@ -20,6 +20,9 @@ const Schema=new mongoose.Schema({
     "Program Educational Objectives":{
       type:String
     },
+    show:{
+      type:Boolean,
+    },
     sourceOfInfo: {
         type: Object,
         default: {
