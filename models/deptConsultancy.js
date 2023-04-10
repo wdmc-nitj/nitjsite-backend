@@ -32,17 +32,8 @@ const ConsultancySchema = new mongoose.Schema(
         order: {
             type: Number,
         },
-        new: {
-            type: Boolean,
-        },
         sourceOfInfo: {
-            type: Object,
-            default: {
-                name: null,
-                email: null,
-                designation: null,
-                department: null,
-            }
+            type:  String
         },
     }, {
     timestamps: true,

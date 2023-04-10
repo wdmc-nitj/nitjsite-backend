@@ -12,14 +12,8 @@ const Schema=new mongoose.Schema({
     },
     
     sourceOfInfo: {
-        type: Object,
-        default: {
-          name: null,
-          email: null,
-          designation: null,
-          department: null,
-        }
-      }
+      type:  String
+  },
 },{timestamps:true})
 
 module.exports=mongoose.model("deptSyllabus",Schema);

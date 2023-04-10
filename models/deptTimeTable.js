@@ -10,16 +10,9 @@ const Schema=new mongoose.Schema({
       type:String,
       enum:["B.Tech","M.Tech","PhD","PG Diploma"]
     },
-    
     sourceOfInfo: {
-        type: Object,
-        default: {
-          name: null,
-          email: null,
-          designation: null,
-          department: null,
-        }
-      }
+      type:  String
+  },
 },{timestamps:true})
 
 module.exports=mongoose.model("deptTimeTable",Schema);

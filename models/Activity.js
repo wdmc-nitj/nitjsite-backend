@@ -17,14 +17,8 @@ const Schema = new mongoose.Schema({
     type: Boolean,
   },
   sourceOfInfo: {
-    type: Object,
-    default: {
-      name: null,
-      email: null,
-      designation: null,
-      department: null,
-    }
-  },
+    type:  String
+},
   show: { type: Boolean, default: true }
 
 }, { timestamps: true })

@@ -14,14 +14,8 @@ const Schema = new mongoose.Schema({
     LinkedinUrl: { type: String },
 
     sourceOfInfo: {
-        type: Object,
-        default: {
-            name: null,
-            email: null,
-            designation: null,
-            department: null,
-        }
-    }
+        type:  String
+    },
 }, { timestamps: true })
 
 module.exports = mongoose.model("deptContactUs", Schema);

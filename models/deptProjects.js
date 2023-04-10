@@ -30,14 +30,8 @@ const ProjectSchema = new mongoose.Schema(
       type: Number,
     },
     sourceOfInfo: {
-      type: Object,
-      default: {
-        name: null,
-        email: null,
-        designation: null,
-        department: null,
-      }
-    },
+      type:  String
+  },
   }, {
   timestamps: true,
 }

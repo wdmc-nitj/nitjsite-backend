@@ -18,21 +18,9 @@ const Schema = new mongoose.Schema(
     package: {
       type: Number,
     },
-    sourceOfInfoName: {
-      type: String,
-    },
-    sourceOfInfoEmail: {
-      type: String,
-    },
-    sourceOfInfoDesignation: {
-      type: String,
-    },
-    sourceOfInfoDepartment: {
-      type: String,
-    },
-    newPage: {
-      type: Boolean,
-    },
+    sourceOfInfo: {
+      type:  String
+  },
     show: { type: Boolean, default: true },
     order: {
       type: Number,

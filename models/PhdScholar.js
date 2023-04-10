@@ -19,14 +19,8 @@ const Schema=new mongoose.Schema({
     }
     ,
     sourceOfInfo: {
-        type: Object,
-        default: {
-          name: null,
-          email: null,
-          designation: null,
-          department: null,
-        }
-      },
+        type:  String
+    },
     show: { type: Boolean, default: true },
     order:{
         type: Number,

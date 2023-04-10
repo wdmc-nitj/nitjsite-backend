@@ -12,19 +12,13 @@ const Schema=new mongoose.Schema({
     img: {type:String},
     type:{
       type:String,
-      enum:["Club","Coordinator","Team","Societies"]
+      enum:["Club","Team","Societies"]
     },
     description: { type: String, default: "" },
     show: { type: Boolean, default: true },
     sourceOfInfo: {
-        type: Object,
-        default: {
-          name: null,
-          email: null,
-          designation: null,
-          department: null,
-        }
-      }
+      type:  String
+  },
 },{timestamps:true})
 
 module.exports=mongoose.model("departmentClubs",Schema);
