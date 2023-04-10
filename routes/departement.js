@@ -94,6 +94,7 @@ const { getByDeptClubs } = require("../controllers/deptClubs");
 const { getByDeptCoordinator } = require("../controllers/deptCoordinator");
 const { getByDeptDeptImages } = require("../controllers/deptImages");
 const { getByDeptContactUs } = require("../controllers/deptContactUs");
+const { getByDeptDescription } = require("../controllers/deptDescription");
 
 const Router = express.Router();
 
@@ -188,7 +189,7 @@ Router.get("/:dept/Projects",getByDeptProject);
 Router.get("/:dept/SocietyClubs",getByDeptClubs);
 Router.get("/:dept/Images",getByDeptDeptImages);
 Router.get("/:dept/contactus",getByDeptContactUs);
-
+Router.get("/:dept/description",getByDeptDescription);
 Router.route("/:dept/news").get(latestNewsController.getNews);
 Router.route("/:dept/all").get(latestNewsController.getAllNews);
 

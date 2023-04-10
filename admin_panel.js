@@ -28,6 +28,7 @@ const DeptStudents = require("./models/deptStudents");
 const DeptContactUs = require("./models/deptContactUs");
 const DeptImages = require("./models/deptImages");
 const DeptProgrammeInfo = require("./models/deptProgrammeInfo");
+const DeptDescription = require("./models/deptDescription");
 
 const Navbar = require("./models/navbar");
 const Footer = require("./models/footer");
@@ -622,6 +623,30 @@ const AdminBroOptions = {
     },
     {
       resource: DeptProgrammeInfo, options: {
+        navigation: 'Academics', actions: {
+          edit: { isAccessible: canEditDept },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          show: { isAccessible: canEditDept },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        }
+      }
+    },
+    {
+      resource: DeptDescription, options: {
         navigation: 'Academics', actions: {
           edit: { isAccessible: canEditDept },
           delete: { isAccessible: isAdmin },
