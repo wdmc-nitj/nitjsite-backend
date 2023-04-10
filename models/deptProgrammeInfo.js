@@ -11,14 +11,14 @@ const Schema=new mongoose.Schema({
     branch:{
       type:String
     },
-    "Curriculum":{
-      type:String
+    "Program Specific Outcomes":{
+      type:[String]
     },
     "Program Outcomes":{
-      type:String
+      type:[String]
     },
     "Program Educational Objectives":{
-      type:String
+      type:[String]
     },
     show:{
       type:Boolean,
