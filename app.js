@@ -140,9 +140,6 @@ app.get("/admin/navbar", (req, res) => {
   res.sendFile(__dirname + "/public/navbar.html");
 });
 
-app.get("/admin/navbar/add", (req, res) => {
-  res.sendFile(__dirname + "/public/navbaradd.html");
-});
 
 //Export----------------------------->
 module.exports = app;
