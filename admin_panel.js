@@ -80,6 +80,7 @@ const newpage = require('./models/newpage');
 const User = require("./models/AdminBroUser");
 const { query } = require("express");
 const { filter } = require("compression");
+const specialCentres = require("./models/specialCentres");
 
 
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin'
@@ -683,6 +684,7 @@ const AdminBroOptions = {
     { resource: researchPublications.RefereedResearch, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
     { resource: sponsoredProjects, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
     { resource: IPRs, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
+    { resource: specialCentres, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
 
     { resource: RecruitmentUpdates, options: { navigation: 'Jobs', actions: { list: { isAccessible: isAdmin } } } },
 
@@ -765,6 +767,7 @@ const AdminBroOptions = {
       }
     },
     { resource: AcademicCalendar, options: { navigation: 'Academics', actions: { list: { isAccessible: isAdmin } } } },
+    { resource: specialCentres, options: { navigation: 'AcademicsSystem', actions: { list: { isAccessible: isAdmin } } } },
     { resource: AcademicNotices, options: { navigation: 'Academics', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Administration, options: { navigation: 'Administration', actions: { list: { isAccessible: isAdmin } } } },
     { resource: Alumni, options: { navigation: 'Alumni', actions: { list: { isAccessible: isAdmin } } } },
