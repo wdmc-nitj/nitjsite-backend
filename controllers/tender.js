@@ -19,7 +19,7 @@ exports.showTender = async (req, res) => {
 
 exports.showTenderbyId = async (req, res) => {
   if (req.query.id) {
-    Tender.findById(req.query.id)
+    Tender.findById({_id:req.query.id})
       .then((data) => res.status(200).json(data))
       .catch((err) => res.status(400).json("Error: " + err));
   } else {

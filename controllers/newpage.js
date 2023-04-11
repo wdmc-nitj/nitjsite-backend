@@ -22,9 +22,9 @@ exports.getNewPage = async (req, res) => {
 };
 
 exports.getNewPagebyId = async (req, res) => {
-  if (req.params.id) {
+  if (req.query.id) {
     newpage
-      .findOne({ _id: req.params.id })
+      .findOne({ _id: req.query.id })
       .then((data) => res.status(200).send(data))
       .catch((err) => res.status(400).send("Error: " + err));
   } else {
