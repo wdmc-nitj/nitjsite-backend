@@ -18,13 +18,18 @@
                 <tr>
                   <th scope="col" class="px-6 py-4">Title</th>
                   <th scope="col" class="px-6 py-4">Content</th>
-                  <th scope="col" class="px-6 py-4">Show</th>
-                  <th scope="col" class="px-6 py-4">Copy</th>
                 </tr>
               </thead>
               <tbody id="table"></tbody>
             </table>
           </div>
+          <a href="/admin/store/add">
+
+            <button 
+            class="m-2 rounded-lg text-white bg-blue-700 w-36 h-10">
+              Add new
+          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -33,7 +38,7 @@
       function showTable() {
         let table = document.getElementById("table");
         table.innerHTML = "";
-        let url = "/newpage/get/all";
+        let url = "/store/get/all";
         fetch(url, {
           method: "GET",
           headers: {
@@ -50,23 +55,19 @@
                 let tr = document.createElement("tr");
                 let td = document.createElement("td");
                 let td1 = document.createElement("td");
-                let td2 = document.createElement("td");
-                let td3 = document.createElement("td");
+                let td2=document.createElement("td");
 
                 td.className = "whitespace-nowrap px-6 py-4";
                 td1.className = "whitespace-nowrap px-6 py-4";
                 td2.className = "whitespace-nowrap px-6 py-4";
-                td3.className = "whitespace-nowrap px-6 py-4";
                 td.innerHTML = d.title;
-                td1.innerHTML = d.description;
-                td2.innerHTML = `<a href="/admin/store/edit/${d._id}">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded">Edit</button></a>`;
-                td3.innerHTML = `<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded" onclick="copy('${d._id}')">Copy</button>`;
+                td1.innerHTML = d.content;
+                td2.innerHTML=`<a href="/admin/store/edit/${d._id}">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded">Edit</button></a>`
 
                 tr.appendChild(td);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
-                tr.appendChild(td3);
 
                 tr.className = "border-b dark:border-neutral-500";
                 table.appendChild(tr);
@@ -78,12 +79,12 @@
           });
       }
 
-      function copy(id) {
-        let copyText = `https://nitjmain.onrender.com/template/index.html?id=${id}?category=newpage`;
+      // function copy(id) {
+      //   let copyText = `https://nitjmain.onrender.com/template/index.html?id=${id}?category=newpage`;
 
-        navigator.clipboard.writeText(copyText);
-        alert("Copied the text: " + copyText);
-      }
+      //   navigator.clipboard.writeText(copyText);
+      //   alert("Copied the text: " + copyText);
+      // }
     </script>
   </body>
 </html>

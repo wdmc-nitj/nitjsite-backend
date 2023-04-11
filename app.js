@@ -36,7 +36,7 @@ const hostelRouter = require("./routes/hostel");
 const proctorialCellRouter = require("./routes/proctorialCell");
 const { admin_panel, router } = require("./admin_panel");
 const upload = require("./routes/upload");
-
+const store=require('./routes/store');
 const admissionsRoutes = require("./routes/admissionsRoutes");
 const researchRoutes = require("./routes/researchRoutes");
 const recruitmentsRoutes = require("./routes/recruitmentRoutes");
@@ -108,6 +108,7 @@ app.use("/proctorialCell", proctorialCellRouter);
 app.use("/admissions", admissionsRoutes);
 app.use("/research", researchRoutes);
 app.use("/recruitments", recruitmentsRoutes);
+app.use('/store',store);
 
 app.get("/admin/ckeditor", (req, res) => {
   res.sendFile(__dirname + "/public/add.html");
@@ -120,9 +121,10 @@ app.get("/admin/upload", (req, res) => {
 app.get("/admin/store", (req, res) => {
   res.sendFile(__dirname + "/public/show.html");
 });
-// app.get('/admin/newpage/add',(req,res)=>{
-//   res.sendFile(__dirname + '/public/add.html');
-// })
+
+app.get('/admin/store/add',(req,res)=>{
+  res.sendFile(__dirname + '/public/add.html');
+})
 
 app.get("/admin/store/edit/:id", (req, res) => {
   res.sendFile(__dirname + "/public/edit.html");
