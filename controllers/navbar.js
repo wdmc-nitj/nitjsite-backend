@@ -9,12 +9,12 @@ const obj = {
     "Cells",
     "Committees",
   ],
-  Academics: [
+  Acadmeics: [
     "Departments",
     "Centers",
     "Academic System",
     "Academic Services",
-    "Allied facilities",
+    "Academic facilities",
     "Programs of study",
     "convocation",
     "other links",
@@ -31,14 +31,16 @@ const obj = {
     "Consultancy @NITJ",
     "Upcoming Events",
   ],
-  Alumni: ["SARC"],
+  Alumni: [
+    "Alumni"
+  ],
   LifeatNITJ: [
     "Club & Socities",
     "Scholarships",
     "Campus Amenities",
     "Health And Wellness",
     "NITJ Festivals",
-    "Accomodation",
+    "Accomodation"
   ],
 };
 
@@ -182,7 +184,7 @@ exports.create = async (req, res) => {
           ["Cells", false],
           ["Committees", false],
         ],
-        Academics: [
+        Acadmeics: [
           ["Departments", false],
           ["Centers", false],
           ["Academic System", true],

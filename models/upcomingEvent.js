@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema(
   {
     title: { type: String, required: true },
+    date: { type: Date, required: true },
     link: { type: String, default: "" },
     order: {
       type: Number,
@@ -35,8 +36,6 @@ const Schema = new mongoose.Schema(
       type: String,
     },
     startDate:{type:Date},
-    desc:{type:String},
-    
     endDate:{type:Date},
     show: { type: Boolean, default: true },
   },

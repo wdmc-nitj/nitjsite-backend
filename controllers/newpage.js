@@ -22,17 +22,10 @@ exports.getNewPage = async (req, res) => {
 };
 
 exports.getNewPagebyId = async (req, res) => {
-  if (req.query.id) {
-    newpage
-      .find({ _id: req.query.id })
-      .then((data) => res.status(200).send(data))
-      .catch((err) => res.status(400).send("Error: " + err));
-  } else {
-    newpage
-      .find({ show: true })
-      .then((data) => res.status(200).send(data))
-      .catch((err) => res.status(400).send("Error: " + err));
-  }
+  newpage
+    .findOne({ _id: req.query.id })
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(400).send("Error: " + err));
 };
 
 exports.updatenewPage = async (req, res) => {

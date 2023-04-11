@@ -10,7 +10,7 @@ const recruitmentUpdateSchema = new Schema(Object.assign({
     category: {
         type: String,
         required: true,
-        enum: ['faculty', 'nonFaculty', 'faculty-contract', 'nonFaculty-contract', 'research']
+        enum: ['faculty', 'nonFaculty', 'faculty-contract', 'nonFaculty-contract']
     },
 }, fields.webURL, commonFieldsForAll), { timestamps: true });
 

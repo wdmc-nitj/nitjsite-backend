@@ -2,23 +2,22 @@ const mongoose = require("mongoose");
 //----------------------------------->
 
 //Schema---------------------------->
-const CoordSchema = new mongoose.Schema(
+const deptDescription = new mongoose.Schema(
     {
 
-        Images: {
-            type: [{
-                link: {
-                    type: String
-                }
-            }],
+        description:{
+            type:String
+        },
+        img:{
+            type:String
         },
         department: {
             type: String,
-            enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf', 'cee', 'cai']
+            enum: ['bt', 'ch', 'cy', 'ce', 'cse', 'ee', 'ece', 'hm', 'ipe', 'it', 'ice', 'ma', 'me', 'ph', 'tt', 'cf','cee','cai']
         },
         show: { type: Boolean, default: true },
         sourceOfInfo: {
-            type: String
+            type:  String
         },
     }, {
     timestamps: true,
@@ -26,7 +25,7 @@ const CoordSchema = new mongoose.Schema(
 );
 
 //Model---------------------------->
-const Model = mongoose.model("deptImages", CoordSchema);
+const Model = mongoose.model("deptDescription", deptDescription);
 
 //Export----------------------------->
 module.exports = Model;
