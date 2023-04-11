@@ -13,14 +13,12 @@ const Infrastructure = require("./models/Infrastructure");
 const PhdScholar = require("./models/PhdScholar");
 const Placement = require("./models/Placement");
 const Staff = require("./models/Staff");
-const Student = require("./models/Student");
 const DeptClub = require("./models/departmentClubs");
 const DeptPub = require("./models/deptPublication");
 const DeptCalender = require("./models/deptCalender");
 const DeptConsultancy = require("./models/deptConsultancy");
 const DeptCoordinators = require("./models/deptCoordinators");
 const DeptNews = require("./models/deptNews");
-const DeptProgrammes = require("./models/deptProgrammes");
 const DeptProjects = require("./models/deptProjects");
 const DeptSyllabus = require("./models/deptSyllabus");
 const DeptTimeTable = require("./models/deptTimeTable");
@@ -29,6 +27,7 @@ const DeptContactUs = require("./models/deptContactUs");
 const DeptImages = require("./models/deptImages");
 const DeptProgrammeInfo = require("./models/deptProgrammeInfo");
 const DeptDescription = require("./models/deptDescription");
+
 
 const Navbar = require("./models/navbar");
 const Footer = require("./models/footer");
@@ -85,7 +84,27 @@ const specialCentres = require("./models/specialCentres");
 
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin'
 const isAdmin = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin'
+function removefields(arr) {
+  var index = arr.indexOf('department');
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  var index = arr.indexOf('__v');
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  var index = arr.indexOf('_id');
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  var index = arr.indexOf('sourceOfInfo');
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+}
 const canEditDept = ({ currentAdmin, record }) => {
+  // console.log(removefields(Object.keys(DeptDescription.schema.paths)))
   if (currentAdmin.role === 'admin') {
     return true;
   }
@@ -100,10 +119,11 @@ const canEditDept = ({ currentAdmin, record }) => {
   }
 }
 const canEditprofile = ({ currentAdmin, record }) => {
+
   if (currentAdmin.role === 'admin') {
     return true;
   }
-  
+
   if (!record) {
     return true
   }
@@ -116,444 +136,32 @@ const canEditprofile = ({ currentAdmin, record }) => {
 AdminBro.registerAdapter(AdminBroMongoose);
 const AdminBroOptions = {
   resources: [
-
     ////// Assessable By Department HOD ///// 
     {
-      resource: Staff, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: Student, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: HOD, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: PhdScholar, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: Placement, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: Activity, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: Infrastructure, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptClub, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptPub, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: Achievements, options: {
-        navigation: 'Home', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptCalender, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptConsultancy, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptNews, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptProgrammes, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptProjects, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptSyllabus, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptTimeTable, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptStudents, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
       resource: DeptImages, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
+        navigation: 'Home', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptImages.schema.paths))
+              }
+              return Object.keys(DeptImages.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
@@ -566,90 +174,51 @@ const AdminBroOptions = {
                 ...request,
                 query: query_fetched
               }
-            }, isAccessible: canEditDept
+            },
+            isAccessible: canEditDept
           },
-          show: { isAccessible: canEditDept },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptImages.schema.paths))
+              }
+              return Object.keys(DeptImages.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptCoordinators, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptContactUs, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
-      }
-    },
-    {
-      resource: DeptProgrammeInfo, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
-          delete: { isAccessible: isAdmin },
-          list: {
-            before: async (request, context) => {
-              const { currentAdmin } = context
-              query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
-                query_fetched['filters.department'] = currentAdmin.department
-              }
-              return {
-                ...request,
-                query: query_fetched
-              }
-            }, isAccessible: canEditDept
-          },
-          show: { isAccessible: canEditDept },
-          bulkDelete: { isAccessible: isAdmin },
-          new: { isAccessible: canEditDept },
-        }
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
       }
     },
     {
       resource: DeptDescription, options: {
-        navigation: 'Academics', actions: {
-          edit: { isAccessible: canEditDept },
+        navigation: 'Home', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptDescription.schema.paths))
+              }
+              return Object.keys(DeptDescription.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
           delete: { isAccessible: isAdmin },
           list: {
             before: async (request, context) => {
@@ -662,12 +231,1107 @@ const AdminBroOptions = {
                 ...request,
                 query: query_fetched
               }
-            }, isAccessible: canEditDept
+            },
+            isAccessible: canEditDept
           },
-          show: { isAccessible: canEditDept },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptDescription.schema.paths))
+              }
+              return Object.keys(DeptDescription.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
-        }
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: Activity, options: {
+        navigation: 'Home', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Activity.schema.paths))
+              }
+              return Object.keys(Activity.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Activity.schema.paths))
+              }
+              return Object.keys(Activity.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptNews, options: {
+        navigation: 'Home', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptNews.schema.paths))
+              }
+              return Object.keys(DeptNews.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptNews.schema.paths))
+              }
+              return Object.keys(DeptNews.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: Placement, options: {
+        navigation: 'Home', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Placement.schema.paths))
+              }
+              return Object.keys(Placement.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Placement.schema.paths))
+              }
+              return Object.keys(Placement.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: HOD, options: {
+        navigation: 'About', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(HOD.schema.paths))
+              }
+              return Object.keys(HOD.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(HOD.schema.paths))
+              }
+              return Object.keys(HOD.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: Achievements, options: {
+        navigation: 'About', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Achievements.schema.paths))
+              }
+              return Object.keys(Achievements.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Achievements.schema.paths))
+              }
+              return Object.keys(Achievements.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: Infrastructure, options: {
+        navigation: 'About', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Infrastructure.schema.paths))
+              }
+              return Object.keys(Infrastructure.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Infrastructure.schema.paths))
+              }
+              return Object.keys(Infrastructure.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptContactUs, options: {
+        navigation: 'About', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptContactUs.schema.paths))
+              }
+              return Object.keys(DeptContactUs.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptContactUs.schema.paths))
+              }
+              return Object.keys(DeptContactUs.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptProgrammeInfo, options: {
+        navigation: 'Academic', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptProgrammeInfo.schema.paths))
+              }
+              return Object.keys(DeptProgrammeInfo.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptProgrammeInfo.schema.paths))
+              }
+              return Object.keys(DeptProgrammeInfo.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptCoordinators, options: {
+        navigation: 'Academic', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptCoordinators.schema.paths))
+              }
+              return Object.keys(DeptCoordinators.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptCoordinators.schema.paths))
+              }
+              return Object.keys(DeptCoordinators.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptSyllabus, options: {
+        navigation: 'Academic', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptSyllabus.schema.paths))
+              }
+              return Object.keys(DeptSyllabus.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptSyllabus.schema.paths))
+              }
+              return Object.keys(DeptSyllabus.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptTimeTable, options: {
+        navigation: 'Academic', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptTimeTable.schema.paths))
+              }
+              return Object.keys(DeptTimeTable.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptTimeTable.schema.paths))
+              }
+              return Object.keys(DeptTimeTable.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptCalender, options: {
+        navigation: 'Academic', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptCalender.schema.paths))
+              }
+              return Object.keys(DeptCalender.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptCalender.schema.paths))
+              }
+              return Object.keys(DeptCalender.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: PhdScholar, options: {
+        navigation: 'People', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(PhdScholar.schema.paths))
+              }
+              return Object.keys(PhdScholar.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(PhdScholar.schema.paths))
+              }
+              return Object.keys(PhdScholar.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptStudents, options: {
+        navigation: 'People', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptStudents.schema.paths))
+              }
+              return Object.keys(DeptStudents.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptStudents.schema.paths))
+              }
+              return Object.keys(DeptStudents.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: Staff, options: {
+        navigation: 'Home', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Staff.schema.paths))
+              }
+              return Object.keys(Staff.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(Staff.schema.paths))
+              }
+              return Object.keys(Staff.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource:DeptPub , options: {
+        navigation: 'Research And Labs', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptPub.schema.paths))
+              }
+              return Object.keys(DeptPub.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptPub.schema.paths))
+              }
+              return Object.keys(DeptPub.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptProjects, options: {
+        navigation: 'Research And Labs', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptProjects.schema.paths))
+              }
+              return Object.keys(DeptProjects.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptProjects.schema.paths))
+              }
+              return Object.keys(DeptProjects.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptConsultancy, options: {
+        navigation: 'Research And Labs', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptConsultancy.schema.paths))
+              }
+              return Object.keys(DeptConsultancy.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptConsultancy.schema.paths))
+              }
+              return Object.keys(DeptConsultancy.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
+      }
+    },
+    {
+      resource: DeptClub, options: {
+        navigation: 'Research And Labs', actions: {
+          edit: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptClub.schema.paths))
+              }
+              return Object.keys(DeptClub.schema.paths)
+            },
+            after: async (request, context) => {
+              const adminUser = context.session.adminUser
+              query_fetched = { ...request.query }
+              if (adminUser && adminUser.role === 'restricted') {
+                request.record.params.department = adminUser.department
+              }
+              if (adminUser) {
+                request.record.params.sourceOfInfo = adminUser.email
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            }, isAccessible: canEditDept
+          },
+          delete: { isAccessible: isAdmin },
+          list: {
+            before: async (request, context) => {
+              const { currentAdmin } = context
+              query_fetched = { ...request.query }
+              if (currentAdmin && currentAdmin.role === 'restricted') {     // to filter by department
+                query_fetched['filters.department'] = currentAdmin.department
+              }
+              return {
+                ...request,
+                query: query_fetched
+              }
+            },
+            isAccessible: canEditDept
+          },
+          show: {
+            layout: (currentAdmin) => {
+              if (currentAdmin.role === 'restricted') {
+                return removefields(Object.keys(DeptClub.schema.paths))
+              }
+              return Object.keys(DeptClub.schema.paths)
+            },
+             isAccessible: canEditDept
+          },
+          bulkDelete: { isAccessible: isAdmin },
+          new: { isAccessible: canEditDept },
+        },
+        properties: {
+          sourceOfInfo: { isVisible: false }
+      },
       }
     },
 
@@ -708,7 +1372,7 @@ const AdminBroOptions = {
             before: async (request, context) => {
               const { currentAdmin } = context
               query_fetched = { ...request.query }
-              if (currentAdmin && currentAdmin.role!='admin') {     // to filter by department
+              if (currentAdmin && currentAdmin.role != 'admin') {     // to filter by department
                 query_fetched['filters.email'] = currentAdmin.email
               }
               return {
@@ -723,7 +1387,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality','education_qualification', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality', 'education_qualification', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: canEditprofile
           },
@@ -741,7 +1405,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality', 'education_qualification','book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality', 'education_qualification', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: isAdmin
           },
@@ -759,7 +1423,7 @@ const AdminBroOptions = {
               if (currentAdmin.role === 'admin') {
                 return ['_id', 'department', 'name', 'email', 'password', 'img', 'position', 'education_qualification', 'address', 'gender', 'dob', 'designation', 'nationality', 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'sourceOfInfo', 'show', 'order', 'affiliations', 'createdAt', 'updatedAt', '__v'];
               }
-              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality' ,'education_qualification',, 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
+              return ['name', 'email', 'img', 'position', 'department', 'address', 'gender', 'dob', 'designation', 'nationality', 'education_qualification', , 'book_publications', 'conference_publications', 'admin_responsibility', 'patent', 'phd_supervised', 'phd_dissertion', 'awards', 'research_profile', 'research_project', 'personal_link', 'journal', 'event', 'affiliations'];
             },
             isAccessible: isAdmin,
           }
@@ -823,6 +1487,25 @@ const AdminBroOptions = {
       }
     }
   ],
+  locale: {
+    translations: {
+      labels: {
+        deptImages: 'Department Images',
+        deptDescription: 'Department Description',
+        deptNews:'Department News',
+        deptContactUs:'Department Contact Us',
+        deptProgrammeInfo:'Department Programme Info',
+        deptCoordinators:'Department Coordinators',
+        deptSyllabus:'Department Syllabus',
+        deptTimeTable:'Department Time Table',
+        deptCalender:'Department Calender',
+        deptStudents:'Department Students',
+        deptPublication:'Department Publications',
+        deptProjects:'Department Projects',
+        deptConsultancy:'Department Consultancy',
+      }
+    }
+  },
 };
 
 
@@ -841,15 +1524,15 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(admin_panel, {
     else if (faculty) {
       var status = false;
       await bcrypt.compare(password, faculty.password).then((value) => {
-        if(value){
+        if (value) {
           status = true;
         }
       }
       );
-      if(status){
+      if (status) {
         return faculty;
       }
-      
+
     }
     return false
   },
