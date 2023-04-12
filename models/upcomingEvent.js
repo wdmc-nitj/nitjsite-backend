@@ -11,7 +11,7 @@ const Schema = new mongoose.Schema(
       default: 0,
     },
     type: {
-      type: String,
+      type: String, required: true
       enum: [
         "Conference",
         "Seminar",
@@ -46,7 +46,7 @@ const Schema = new mongoose.Schema(
     sourceOfInfoDepartment: {
       type: String,
     },
-    startDate:{type:Date},
+    startDate:{type:Date, required: true},
     desc:{type:String},
     
     endDate:{type:Date},
