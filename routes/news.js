@@ -9,6 +9,7 @@ Router.route("/").get(latestNewsController.getNews);
 
 Router.route("/get/all").get(latestNewsController.getAllNews);
 
+Router.route("/getNewsByType").get(latestNewsController.getNewsbyType);
 
 //Export----------------------------->
 module.exports = Router;

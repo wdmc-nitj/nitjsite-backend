@@ -1,4 +1,5 @@
 const LatestNews = require("../models/news");
+const {sendError} = require('../utils');
 //----------------------------------->
 
 //----------------------------------------------------------------------->
@@ -75,4 +76,19 @@ exports.getAllNews = async (req, res) => {
     LatestNews.find({})
         .then((news) => res.status(200).send(news))
         .catch((err) => res.status(400).send("Error: " + err));
+};
+
+
+exports.getNewsbyType = (req, res) => {
+    let filter = { show : true };
+
+    if (req.query.type !== 'all') {
+        filter.type = req.query.type;
+    }
+
+    LatestNews
+        .find(filter)
+        .sort({ updatedAt: -1 })
+        .then((news) => res.json(news))
+        .catch((err) => sendError(res,err));
 };
