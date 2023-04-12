@@ -92,7 +92,6 @@ const updateeventByID = (req, res) => {
         return sendError(res, `Invalid ID: ${id}`);
     }
 
-    req.body.updatedAt = Date.now();
     Event
         .findByIdAndUpdate(id, req.body, { new: true })
         .then((updatedevent) => {

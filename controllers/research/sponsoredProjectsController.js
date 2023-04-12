@@ -84,7 +84,6 @@ const updateSponsoredProjectByID = (req, res) => {
         return sendError(res, `Invalid ID: ${id}`);
     }
 
-    req.body.updatedAt = Date.now();
     SponsoredProject
         .findByIdAndUpdate(id, req.body, { new: true })
         .then(sponsoredProject => {

@@ -7,6 +7,14 @@ const Schema = new mongoose.Schema(
     title: { type: String, required: true },
     desc: { type: String, default: "" },
     show: { type: Boolean, default: true },
+    type: {
+      type: String,
+      enum: [
+        "Academics",
+        "Admissions",
+        "others",
+      ],
+    },
     order: {
       type: Number,
       default: 0,

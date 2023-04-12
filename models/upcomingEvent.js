@@ -5,11 +5,22 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    date: { type: Date, required: true },
     link: { type: String, default: "" },
     order: {
       type: Number,
       default: 0,
+    },
+    type: {
+      type: String, required: true,
+      enum: [
+        "Conference",
+        "Seminar",
+        "FDP",
+        "STC",
+        "Workshop",
+        "GuestLecture",
+        "others",
+      ],
     },
     img: { type: String, default: "" },
     new: {
@@ -35,7 +46,9 @@ const Schema = new mongoose.Schema(
     sourceOfInfoDepartment: {
       type: String,
     },
-    startDate:{type:Date},
+    startDate:{type:Date, required: true},
+    desc:{type:String},
+    
     endDate:{type:Date},
     show: { type: Boolean, default: true },
   },

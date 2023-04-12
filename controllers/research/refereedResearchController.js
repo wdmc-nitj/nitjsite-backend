@@ -36,7 +36,6 @@ const editRefereedResearch = (req, res) => {
 
     validateID(id)
         .then(() => {
-            req.body.updatedAt = Date.now();
             RefereedResearch.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
                 .then((updatedRefereedResearch) => res.json(updatedRefereedResearch))
                 .catch((err) => sendError(res, err));

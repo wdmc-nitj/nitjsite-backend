@@ -55,7 +55,6 @@ const editCitedResearch = (req, res) => {
 
     validateID(id)
         .then(() => {
-            req.body.updatedAt = Date.now();
             CitedResearch.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
                 .then((updatedCitedResearch) => res.json(updatedCitedResearch))
                 .catch((err) => sendError(res, err));
