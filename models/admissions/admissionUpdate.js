@@ -14,7 +14,7 @@ const updateSchema = new Schema(Object.assign({
         notEmpty: true,
         enum: ['BTECH', 'MTECH-CCMT', 'MTECH-SELF', 'MSC', 'MBA', 'PHD', 'FOREIGN'],
     },
-}, fields.webURL, commonFieldsForAll), { timestamps: true });
+}, fields.webURL, fields.newGIF, commonFieldsForAll), { timestamps: true });
 
 updateSchema.pre(regexForUpdateLogs, logUpdates);
 
