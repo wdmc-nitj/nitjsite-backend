@@ -37,7 +37,7 @@ const hostelRouter = require("./routes/hostel");
 const proctorialCellRouter = require("./routes/proctorialCell");
 const { admin_panel, router } = require("./admin_panel");
 const upload = require("./routes/upload");
-const store=require('./routes/store');
+const store = require('./routes/store');
 const admissionsRoutes = require('./routes/admissionsRoutes');
 const researchRoutes = require('./routes/researchRoutes');
 const recruitmentsRoutes = require('./routes/recruitmentRoutes');
@@ -56,10 +56,10 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: "5mb" }));
 bodyParser.urlencoded({ extended: true });
-app.use( express.static( __dirname + '/public' ));
+app.use(express.static(__dirname + '/public'));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.sendFile("index.html");
 });
 
 //allowing all cross origin requests
@@ -72,7 +72,9 @@ app.use(
 //routes
 
 // app.use("/login",login);
-
+app.use('/api', (req, res, next) => {
+  next();
+})
 // app.route('/*').post(verifyUser).put(verifyUser).delete(verifyUser);
 app.use("/navbar", navBarRouter);
 app.use("/news", newsRouter);
@@ -100,29 +102,29 @@ app.use("/upcomingEvent", upcomingEventRouter);
 app.use("/academicCalendar", academicCalendarRouter);
 
 app.use("/deptCalendar", deptCalendarRouter);
-app.use('/curriculum',curriculumRouter);
+app.use('/curriculum', curriculumRouter);
 
 app.use("/search", searchRouter);
 app.use("/dept", departmentRouter);
-app.use('/newpage',newpageRouter)
+app.use('/newpage', newpageRouter)
 app.use("/resource", resourceRouter);
 app.use("/upload", upload);
 
 app.use("/hostel", hostelRouter);
 app.use("/proctorialCell", proctorialCellRouter);
-app.use('/store',store);
+app.use('/store', store);
 app.use('/admissions', admissionsRoutes);
 app.use('/research', researchRoutes);
 app.use('/recruitments', recruitmentsRoutes);
 
-app.get('/admin/ckeditor',(req,res)=>{
+app.get('/admin/ckeditor', (req, res) => {
   res.sendFile(__dirname + '/public/add.html');
 })
 
-app.get('/admin/upload',(req,res)=>{
+app.get('/admin/upload', (req, res) => {
   res.sendFile(__dirname + '/public/upload.html');
 })
-app.get('/admin/store/add',(req,res)=>{
+app.get('/admin/store/add', (req, res) => {
   res.sendFile(__dirname + '/public/add.html');
 })
 app.get("/admin/store", (req, res) => {
