@@ -80,10 +80,6 @@ const commonFieldsForAll = {
         type: Number,
         default: 0
     },
-    new: {
-        type: Boolean,
-        default: true
-    },
     visibilityChangedAt: {
         type: Date,
         default: null
@@ -104,7 +100,13 @@ const fields = {
             type: Boolean,
             default: false,
         },
-    }
+    },
+    newGIF: {
+        new: {
+            type: Boolean,
+            default: true
+        },
+    },
 };
 
 // exports these functions to be used in other files
@@ -114,5 +116,5 @@ module.exports = {
     commonFieldsForAll,
     logUpdates,
     regexForUpdateLogs,
-    fields
+    fields,
 };
