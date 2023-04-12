@@ -59,7 +59,6 @@ const Schema = new mongoose.Schema(
         "Admissions",
         "Tenders",
         "Jobs",
-        "Academic",
         "Achievements",
         "others",
       ],
