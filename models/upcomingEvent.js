@@ -11,7 +11,7 @@ const Schema = new mongoose.Schema(
       default: 0,
     },
     type: {
-      type: String, required: true
+      type: String, required: true,
       enum: [
         "Conference",
         "Seminar",
