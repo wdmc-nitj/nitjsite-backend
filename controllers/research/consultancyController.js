@@ -86,10 +86,16 @@ const getVisibleConsultanciesGroupedByStartYear = (req, res) => {
 // Create a new consultancy
 const createConsultancy = (req, res) => {
     const newConsultancy = new Consultancy(req.body);
-    if (!newConsultancy.amountDigits) {
+
+    if (newConsultancy.amountDigits === 0) {
+        newconsultancy.amountWords = 'Zero';
+    }
+    else if (!newConsultancy.amountDigits) {
         return sendError(res, 'Amount is empty');
     }
-    newConsultancy.amountWords = digitsToWords(newConsultancy.amountDigits);
+    else {
+        newConsultancy.amountWords = digitsToWords(newConsultancy.amountDigits);
+    }
 
     newConsultancy.save()
         .then((createdConsultancy) => res.status(201).json(createdConsultancy))
