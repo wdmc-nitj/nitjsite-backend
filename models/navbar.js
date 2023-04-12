@@ -7,7 +7,7 @@ const Schema = new mongoose.Schema({
         type:Array,
         default:[]
     },
-    Acadmeics:{
+    Academics:{
         type:Array,
         default:[]
     },

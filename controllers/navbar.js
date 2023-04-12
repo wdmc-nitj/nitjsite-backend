@@ -40,7 +40,7 @@ const obj = {
     "NITJ Festivals",
     "Accomodation",
   ],
-};
+};  
 
 exports.show = async (req, res) => {
   Navbar.findOne({}, (err, data) => {
@@ -102,6 +102,7 @@ exports.update = async (req, res) => {
 
       if(typeof(order)!="number")
         order=Number(order);
+      
       
 
       let idx = obj[`${type}`].indexOf(`${subtype}`);
@@ -232,6 +233,7 @@ exports.edit = async (req, res) => {
       const name = req.body.name;
       const id = req.body.id;
       const order = req.body.order;
+
 
       let idx = obj[`${type}`].indexOf(`${subtype}`);
       let ind = -1;
