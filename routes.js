@@ -40,6 +40,8 @@ const recruitmentsRoutes = require("./routes/recruitmentRoutes");
 const curriculumRouter = require("./routes/curriculum");
 const deptCalendarRouter = require("./routes/deptCalendar");
 
+const adminPath = "dashboard";
+
 // mainRouter.route('/*').post(verifyUser).put(verifyUser).delete(verifyUser);
 mainRouter.use("/navbar", navBarRouter);
 mainRouter.use("/news", newsRouter);
@@ -82,27 +84,27 @@ mainRouter.use("/admissions", admissionsRoutes);
 mainRouter.use("/research", researchRoutes);
 mainRouter.use("/recruitments", recruitmentsRoutes);
 
-mainRouter.get("/admin/ckeditor", (req, res) => {
+mainRouter.get(`/${adminPath}/ckeditor`, (req, res) => {
   res.sendFile(__dirname + "/public/add.html");
 });
 
-mainRouter.get("/admin/upload", (req, res) => {
+mainRouter.get(`/${adminPath}/upload`, (req, res) => {
   res.sendFile(__dirname + "/public/upload.html");
 });
-mainRouter.get("/admin/store/add", (req, res) => {
+mainRouter.get(`/${adminPath}/store/add`, (req, res) => {
   res.sendFile(__dirname + "/public/add.html");
 });
-mainRouter.get("/admin/store", (req, res) => {
+mainRouter.get(`/${adminPath}/store`, (req, res) => {
   res.sendFile(__dirname + "/public/show.html");
 });
-// mainRouter.get('/admin/newpage/edit/:id',(req,res)=>{
+// mainRouter.get('/${adminPath}/newpage/edit/:id',(req,res)=>{
 //   res.sendFile(__dirname + '/public/edit.html');
 // })
 
-mainRouter.get("/admin/store/edit/:id", (req, res) => {
+mainRouter.get(`/${adminPath}/store/edit/:id`, (req, res) => {
   res.sendFile(__dirname + "/public/edit.html");
 });
-mainRouter.get("/admin/navbar", (req, res) => {
+mainRouter.get(`/${adminPath}/navbar`, (req, res) => {
   res.sendFile(__dirname + "/public/navbar.html");
 });
 
