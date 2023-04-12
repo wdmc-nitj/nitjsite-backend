@@ -1,5 +1,5 @@
 const { sendError, validateID } = require('../utils');
-const RecruitmentUpdate = require('../models/recruitmentUpdates');
+const { RecruitmentUpdate, DefaultJobsTab } = require('../models/recruitmentUpdates');
 
 // GET all recruitment updates
 const getAllRecruitmentUpdates = (req, res) => {
@@ -134,6 +134,19 @@ const deleteRecruitmentUpdateByID = (req, res) => {
         .catch((err) => sendError(res, err));
 };
 
+const getDefaultTabName = (req, res) => {
+    DefaultJobsTab
+        .findOne()
+        .then((defaultTab) => {
+            if (!defaultTab) {
+                return sendError(res, 'Default tab not found');
+            }
+
+            res.json(defaultTab);
+        })
+        .catch((err) => sendError(res, err));
+};
+
 module.exports = {
     getAllRecruitmentUpdates,
     getVisibleRecruitmentUpdatesByCategory,
@@ -141,5 +154,6 @@ module.exports = {
     getRecruitmentUpdateByID,
     editRecruitmentUpdateByID,
     hideRecruitmentUpdateByID: editMetaData,
-    deleteRecruitmentUpdateByID
+    deleteRecruitmentUpdateByID,
+    getDefaultTabName
 };

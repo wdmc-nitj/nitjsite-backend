@@ -67,7 +67,8 @@ const researchPublications = require("./models/research/researchPublications");
 const sponsoredProjects = require("./models/research/sponsoredProjects");
 const IPRs = require("./models/research/IPRs");
 
-const RecruitmentUpdates = require("./models/recruitmentUpdates");
+const RecruitmentUpdates = require("./models/recruitmentUpdates").RecruitmentUpdate;
+const DefaultJobsTab = require("./models/recruitmentUpdates").DefaultJobsTab;
 const addmissionHelpline = require("./models/admissions/admissionHelpline");
 const addmissionUpdate = require("./models/admissions/admissionUpdate");
 const importantLink = require("./models/admissions/importantLink");
@@ -136,11 +137,11 @@ const canEditprofile = ({ currentAdmin, record }) => {
 
 AdminBro.registerAdapter(AdminBroMongoose);
 const AdminBroOptions = {
-  branding:{
-    companyName:'Nit Jalandhar Admin Panel',
-    softwareBrothers:false,
-    logo:'https://th.bing.com/th/id/OIP.33xhS0Ai3c5yQkxwtYXTQgAAAA?pid=ImgDet&rs=1',
-    favicon:'https://th.bing.com/th/id/OIP.33xhS0Ai3c5yQkxwtYXTQgAAAA?pid=ImgDet&rs=1'
+  branding: {
+    companyName: 'Nit Jalandhar Admin Panel',
+    softwareBrothers: false,
+    logo: 'https://th.bing.com/th/id/OIP.33xhS0Ai3c5yQkxwtYXTQgAAAA?pid=ImgDet&rs=1',
+    favicon: 'https://th.bing.com/th/id/OIP.33xhS0Ai3c5yQkxwtYXTQgAAAA?pid=ImgDet&rs=1'
   },
   resources: [
     ////// Assessable By Department HOD ///// 
@@ -191,14 +192,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptImages.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -248,14 +249,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptDescription.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -305,14 +306,14 @@ const AdminBroOptions = {
               }
               return Object.keys(Activity.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -362,14 +363,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptNews.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -419,14 +420,14 @@ const AdminBroOptions = {
               }
               return Object.keys(Placement.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -476,14 +477,14 @@ const AdminBroOptions = {
               }
               return Object.keys(HOD.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -533,14 +534,14 @@ const AdminBroOptions = {
               }
               return Object.keys(Achievements.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -590,14 +591,14 @@ const AdminBroOptions = {
               }
               return Object.keys(Infrastructure.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -647,14 +648,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptContactUs.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -704,14 +705,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptProgrammeInfo.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -761,14 +762,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptCoordinators.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -818,14 +819,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptSyllabus.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -875,14 +876,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptTimeTable.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -932,14 +933,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptCalender.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -989,14 +990,14 @@ const AdminBroOptions = {
               }
               return Object.keys(PhdScholar.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -1046,14 +1047,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptStudents.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -1103,18 +1104,18 @@ const AdminBroOptions = {
               }
               return Object.keys(Staff.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
-      resource:DeptPub , options: {
+      resource: DeptPub, options: {
         navigation: 'Research And Labs', actions: {
           edit: {
             layout: (currentAdmin) => {
@@ -1160,14 +1161,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptPub.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -1217,14 +1218,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptProjects.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -1274,14 +1275,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptConsultancy.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
     {
@@ -1331,14 +1332,14 @@ const AdminBroOptions = {
               }
               return Object.keys(DeptClub.schema.paths)
             },
-             isAccessible: canEditDept
+            isAccessible: canEditDept
           },
           bulkDelete: { isAccessible: isAdmin },
           new: { isAccessible: canEditDept },
         },
         properties: {
           sourceOfInfo: { isVisible: false }
-      },
+        },
       }
     },
 
@@ -1357,6 +1358,7 @@ const AdminBroOptions = {
     { resource: IPRs, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
     { resource: specialCentres, options: { navigation: researchMenuName, actions: { list: { isAccessible: isAdmin } } } },
 
+    { resource: DefaultJobsTab, options: { navigation: 'Jobs', actions: { list: { isAccessible: isAdmin } } } },
     { resource: RecruitmentUpdates, options: { navigation: 'Jobs', actions: { list: { isAccessible: isAdmin } } } },
 
     { resource: Hostel, options: { navigation: 'Hostel', actions: { list: { isAccessible: isAdmin } } } },
@@ -1500,17 +1502,17 @@ const AdminBroOptions = {
       labels: {
         deptImages: 'Department Images',
         deptDescription: 'Department Description',
-        deptNews:'Department News',
-        deptContactUs:'Department Contact Us',
-        deptProgrammeInfo:'Department Programme Info',
-        deptCoordinators:'Department Coordinators',
-        deptSyllabus:'Department Syllabus',
-        deptTimeTable:'Department Time Table',
-        deptCalender:'Department Calender',
-        deptStudents:'Department Students',
-        deptPublication:'Department Publications',
-        deptProjects:'Department Projects',
-        deptConsultancy:'Department Consultancy',
+        deptNews: 'Department News',
+        deptContactUs: 'Department Contact Us',
+        deptProgrammeInfo: 'Department Programme Info',
+        deptCoordinators: 'Department Coordinators',
+        deptSyllabus: 'Department Syllabus',
+        deptTimeTable: 'Department Time Table',
+        deptCalender: 'Department Calender',
+        deptStudents: 'Department Students',
+        deptPublication: 'Department Publications',
+        deptProjects: 'Department Projects',
+        deptConsultancy: 'Department Consultancy',
       }
     }
   },

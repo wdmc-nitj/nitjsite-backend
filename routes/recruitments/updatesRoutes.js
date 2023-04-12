@@ -17,4 +17,7 @@ recruitmentUpdateRouter.route('/update')
     .put(recruitmentUpdateController.hideRecruitmentUpdateByID)
     .delete(recruitmentUpdateController.deleteRecruitmentUpdateByID);
 
+recruitmentUpdateRouter.route('/defaultTab')
+    .get(recruitmentUpdateController.getDefaultTabName);
+
 module.exports = recruitmentUpdateRouter;
