@@ -10,6 +10,18 @@ const Schema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    type: {
+      type: String,
+      enum: [
+        "Conference",
+        "Seminar",
+        "FDP",
+        "STC",
+        "Workshop",
+        "GuestLecture",
+        "others",
+      ],
+    },
     img: { type: String, default: "" },
     new: {
       type: Boolean,
