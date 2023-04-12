@@ -41,7 +41,6 @@ const getUpdateById = (req, res) => {
 const editUpdate = (req, res) => {
     const id = req.query.id;
     validateID(id).then(() => {
-        req.body.updatedAt = Date.now();
         admissionUpdate.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
             .then((result) => res.json(result))
             .catch((err) => sendError(res, err));

@@ -79,7 +79,6 @@ const editRecruitmentUpdateByID = (req, res) => {
         return sendError(res, `Invalid ID: ${id}`);
     }
 
-    req.body.updatedAt = Date.now();
     RecruitmentUpdate
         .findByIdAndUpdate(id, req.body, { new: true })
         .then((updatedRecruitmentUpdate) => {

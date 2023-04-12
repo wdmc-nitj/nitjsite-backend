@@ -146,7 +146,6 @@ const updateConsultancyByID = (req, res) => {
 
             const updatedConsultancy = req.body;
             updatedConsultancy.amountWords = verifyAmountAndConvertToWords(updatedConsultancy.amountDigits);
-            updatedConsultancy.updatedAt = Date.now();
 
             // Update the consultancy
             Consultancy

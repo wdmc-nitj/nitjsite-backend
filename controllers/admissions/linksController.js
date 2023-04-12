@@ -39,7 +39,6 @@ const editLink = (req, res) => {
 
     const id = req.query.id;
     validateID(id).then(() => {
-        req.body.updatedAt = Date.now();
         admissionLink.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
             .then((updatedLink) => res.json(updatedLink))
             .catch((err) => sendError(res, err));

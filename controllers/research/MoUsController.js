@@ -45,7 +45,6 @@ const editMoU = (req, res) => {
 
     const id = req.query.id;
     validateID(id).then(() => {
-        req.body.updatedAt = Date.now();
         MoU.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
             .then((updatedMoU) => res.json(updatedMoU))
             .catch((err) => sendError(res, err));
