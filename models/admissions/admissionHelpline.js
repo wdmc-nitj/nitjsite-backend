@@ -1,14 +1,8 @@
 const mongoose = require('mongoose');
-const { commonFieldsForAll, logUpdates, regexForUpdateLogs } = require('../../utils');
+const { commonFieldsForAll, logUpdates, regexForUpdateLogs, fields } = require('../../utils');
 const Schema = mongoose.Schema;
 
 const helplineSchema = new Schema(Object.assign({
-    degree: {
-        type: String,
-        required: true,
-        notEmpty: true,
-        enum: ['BTECH', 'MTECH-CCMT', 'MTECH-SELF', 'MSC', 'MBA', 'PHD', 'FOREIGN']
-    },
     number: {
         type: String,
         required: true,
@@ -60,7 +54,7 @@ const helplineSchema = new Schema(Object.assign({
             message: props => `${props.value} is not a valid time!`
         }
     },
-}, commonFieldsForAll), { timestamps: true });
+}, fields.admissionsFields, commonFieldsForAll), { timestamps: true });
 
 helplineSchema.pre(regexForUpdateLogs, logUpdates);
 

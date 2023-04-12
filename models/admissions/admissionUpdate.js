@@ -8,13 +8,7 @@ const updateSchema = new Schema(Object.assign({
         required: true,
         notEmpty: true
     },
-    degree: {
-        type: String,
-        required: true,
-        notEmpty: true,
-        enum: ['BTECH', 'MTECH-CCMT', 'MTECH-SELF', 'MSC', 'MBA', 'PHD', 'FOREIGN'],
-    },
-}, fields.webURL, fields.newGIF, commonFieldsForAll), { timestamps: true });
+}, fields.admissionsFields, fields.webURL, fields.newGIF, commonFieldsForAll), { timestamps: true });
 
 updateSchema.pre(regexForUpdateLogs, logUpdates);
 

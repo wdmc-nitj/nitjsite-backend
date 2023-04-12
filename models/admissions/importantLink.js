@@ -8,7 +8,7 @@ const linkSchema = new Schema(Object.assign({
         required: true,
         notEmpty: true
     },
-}, fields.webURL, commonFieldsForAll), { timestamps: true });
+}, fields.admissionsFields, fields.webURL, commonFieldsForAll), { timestamps: true });
 
 linkSchema.pre(regexForUpdateLogs, logUpdates);
 

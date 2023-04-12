@@ -12,6 +12,10 @@ const createLink = (req, res) => {
 const getLinks = (req, res) => {
     let filter = {};
 
+    if (req.query.degree !== 'all') {
+        filter.degree = req.query.degree;
+    }
+
     if (req.query.visible === 'visible') {
         filter.visible = true;
     } else if (req.query.visible === 'hidden') {

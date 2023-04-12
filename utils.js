@@ -107,6 +107,14 @@ const fields = {
             default: true
         },
     },
+    admissionsFields: {
+        degree: {
+            type: String,
+            required: true,
+            notEmpty: true,
+            enum: ['BTECH', 'MTECH-CCMT', 'MTECH-SELF', 'MSC', 'MBA', 'PHD', 'FOREIGN'],
+        },
+    }
 };
 
 // exports these functions to be used in other files
