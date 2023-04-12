@@ -12,7 +12,7 @@ const recruitmentUpdateSchema = new Schema(Object.assign({
         required: true,
         enum: ['faculty', 'nonFaculty', 'faculty-contract', 'nonFaculty-contract', 'research']
     },
-}, fields.webURL, commonFieldsForAll), { timestamps: true });
+}, fields.webURL, fields.newGIF, commonFieldsForAll), { timestamps: true });
 
 recruitmentUpdateSchema.pre(regexForUpdateLogs, logUpdates);
 
