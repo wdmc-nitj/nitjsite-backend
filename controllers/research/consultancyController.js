@@ -29,6 +29,21 @@ const digitsToWords = (num) => {
     return str;
 };
 
+const verifyAmountAndConvertToWords = (amountDigits) => {
+    if (amountDigits === 0) {
+        amountWords = 'Zero';
+    }
+    else if (!amountDigits) {
+        return sendError(res, 'Amount is empty');
+    }
+    else {
+        amountWords = digitsToWords(amountDigits);
+    }
+
+    return amountWords;
+};
+    
+
 // GET all consultancies
 const getAllConsultancies = (req, res) => {
     // filter by req.query.visible if it is not 'all'
@@ -87,15 +102,7 @@ const getVisibleConsultanciesGroupedByStartYear = (req, res) => {
 const createConsultancy = (req, res) => {
     const newConsultancy = new Consultancy(req.body);
 
-    if (newConsultancy.amountDigits === 0) {
-        newconsultancy.amountWords = 'Zero';
-    }
-    else if (!newConsultancy.amountDigits) {
-        return sendError(res, 'Amount is empty');
-    }
-    else {
-        newConsultancy.amountWords = digitsToWords(newConsultancy.amountDigits);
-    }
+    newConsultancy.amountWords = verifyAmountAndConvertToWords(newConsultancy.amountDigits);
 
     newConsultancy.save()
         .then((createdConsultancy) => res.status(201).json(createdConsultancy))
@@ -138,10 +145,7 @@ const updateConsultancyByID = (req, res) => {
             }
 
             const updatedConsultancy = req.body;
-            if (!updatedConsultancy.amountDigits) {
-                return sendError(res, 'Amount is empty');
-            }
-            updatedConsultancy.amountWords = digitsToWords(updatedConsultancy.amountDigits);
+            updatedConsultancy.amountWords = verifyAmountAndConvertToWords(updatedConsultancy.amountDigits);
             updatedConsultancy.updatedAt = Date.now();
 
             // Update the consultancy
