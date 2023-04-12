@@ -136,6 +136,12 @@ const canEditprofile = ({ currentAdmin, record }) => {
 
 AdminBro.registerAdapter(AdminBroMongoose);
 const AdminBroOptions = {
+  branding:{
+    companyName:'Nit Jalandhar Admin Panel',
+    softwareBrothers:false,
+    logo:'https://th.bing.com/th/id/OIP.33xhS0Ai3c5yQkxwtYXTQgAAAA?pid=ImgDet&rs=1',
+    favicon:'https://th.bing.com/th/id/OIP.33xhS0Ai3c5yQkxwtYXTQgAAAA?pid=ImgDet&rs=1'
+  },
   resources: [
     ////// Assessable By Department HOD ///// 
     {
