@@ -92,6 +92,14 @@ const updateeventByID = (req, res) => {
         return sendError(res, `Invalid ID: ${id}`);
     }
 
+    if(req.body.date && req.body.time) {
+        req.body.dateTime = createTimeStamp(req.body.date, req.body.time);
+    }
+
+    // delete date and time from req.body
+    delete req.body.date;
+    delete req.body.time;
+
     Event
         .findByIdAndUpdate(id, req.body, { new: true })
         .then((updatedevent) => {
