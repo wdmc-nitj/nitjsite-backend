@@ -19,6 +19,7 @@ exports.addNews = async (req, res) => {
         },
         order: req.body?.order,
         new: req.body?.new,
+        pin: false,
     });
 
     latestNews
@@ -40,6 +41,7 @@ exports.getNews = async (req, res) => {
     } else {
         
         LatestNews.find({ show: true })
+            .sort({ pin: -1, updatedAt: -1 })
             .then((news) => {res.status(200).send(news)})
             .catch((err) => res.status(400).send("Error: " + err));
     }
@@ -92,3 +94,18 @@ exports.getNewsbyType = (req, res) => {
         .then((news) => res.json(news))
         .catch((err) => sendError(res,err));
 };
+
+exports.pinNews = async (req, res) => {
+    try {
+        const { id, pin } = req.params; // Assuming you pass 'id' and 'pin' as route parameters
+        const news = await LatestNews.findByIdAndUpdate(id, { pin }, { new: true });
+        if (!news) {
+            return res.status(404).json({ message: 'News article not found' });
+        }
+        return res.json(news);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+

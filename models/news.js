@@ -15,6 +15,10 @@ const Schema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    pin:{
+      type:Boolean,
+      default:false,
+    },
     newPage: {
       type: Boolean,
       default: false,

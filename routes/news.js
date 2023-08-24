@@ -11,5 +11,7 @@ Router.route("/get/all").get(latestNewsController.getAllNews);
 
 Router.route("/getNewsByType").get(latestNewsController.getNewsbyType);
 
+Router.route("/pin/:id/:pin").put(latestNewsController.pinNews);
+
 //Export----------------------------->
 module.exports = Router;

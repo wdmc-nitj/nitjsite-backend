@@ -2032,9 +2032,18 @@ const AdminBroOptions = {
       resource: News,
       options: {
         navigation: "Home",
-        actions: { list: { isAccessible: isAdmin } },
+        actions: { 
+          list: {
+            isAccessible: isAdmin,
+            sort: {
+              direction: 'asc', 
+              sortBy: 'pin',    
+            },
+          },
+        },
       },
     },
+    
 
     {
       resource: Notice,
